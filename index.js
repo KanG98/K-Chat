@@ -25,23 +25,23 @@ io.on('connection', (socket) => {
   console.log('new socket io connection', socket.id)
 
   // emit to one user
-
   // socket.emit('message', "Welcome to K-Chat!") // send message to front end 
 
-  // emit to everybody except you
+  // emit to everybody
+  // io.emit()
 
+  // emit to everybody except youself
   socket.broadcast.emit('message', 'a user has joined the chat')
+
+  socket.on('message', (message) => {
+    io.emit('message', message)
+  })
 
   socket.on('disconnect', () => {
     io.emit('message', 'A user has left the chat')
   })
-    
-  // emit to everybody
-  // io.emit()
 
 })
-
-
 
 const port = process.env.PORT || 3030;
 

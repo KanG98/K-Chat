@@ -4,20 +4,35 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/index.css" />
   <title>K-Chat</title>
-  <script src="/socket.io/socket.io.js"></script>
-  <script>
-    const socket = io();
-    socket.on('message', message => {
-      console.log(message)
-    }); 
 
-  </script>
 </head>
 <body>
-  <p>
-    home page
-  </p>
+  <div>
+    <div class="message-container">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, libero vitae officia quae possimus quisquam dignissimos corrupti amet accusantium voluptatum? Ducimus quia quod esse cum at eaque architecto impedit accusamus.
+      </p>
+    </div>
+    <div class="chat-container">
+      <form class="chat-message-form">
+        <input 
+          class="chat-input"
+          type="text" 
+          required
+        />
+        <button class="btn" >
+          Send
+        </button>
+      </form>
+
+    </div>
+
+    <!-- having scripts at the end of the body so that it runs after the above renders -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/socket-main.js"></script> 
+  </div>
 
     
 </body>
