@@ -6,6 +6,79 @@ const app = express();
 const server = require('http').createServer(app)
 const path = require('path');
 const socketio = require('socket.io')
+const db = require('./database/db')
+const uuid = require('uuid')
+
+console.log(uuid.v4())
+
+
+function testUsers(){
+  const Users = require("./database/users")
+  Users.create({
+    userId: 'sampleId',
+    firstName: 'yankang',
+    lastName: 'xue',
+    nickname: 'KanG98',
+    email: 'test@yankang198.com',
+    password: 'password',
+    emailIsVerified: false,
+  })
+    .then((user) => {
+      console.log('success')
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+}
+
+function testMessages(){
+  const Messages = require("./database/messages")
+  Messages.create({
+    messageId: 'testMessagesId',
+    senderId: 'testSEnderId',
+    roomId: 'testRoomId',
+    message: 'hello this is sample'
+  })
+    .then((message) => {
+      console.log('success')
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+}
+
+function testRoom(){
+  const Rooms = require("./database/rooms")
+  Rooms.create({
+    roomId: 'sample id',
+    roomName: 'sampleRoom name',
+    hostUserId: 'sample host user id'
+  })
+    .then((room) => {
+      console.log('success')
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+}
+
+
+function testJoinRoom(){
+  const JoinRoom = require("./database/joinRoom")
+  JoinRoom.create({
+    userId: 'sample id',
+    roomId: 'sampleRoom id'
+  })
+    .then((room) => {
+      console.log('success')
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+}
+
+testJoinRoom()
+// testRoom()
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -54,13 +127,13 @@ io.on('connection', (socket) => {
       // io.emit works
     })
   })
-
-
 })
 
 const port = process.env.PORT || 3030;
 
-server.listen(port, () => 
+db.sync().then(() => {
+  server.listen(port, () => 
   console.log(`App is listening on port ${port}.`)
-);
+);})
+
 
