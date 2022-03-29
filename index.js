@@ -39,26 +39,22 @@ function formatMessage(senderId, text){
 }
 
 io.on('connection', (socket) => {
-  console.log('new socket io connection', socket.id)
+  socket.on('join-room', ({userId, roomId}) => {
+    socket.join(roomId)
+    console.log('new socket io connection', socket.id)
 
-  // emit to one user
-
-  // socket.emit('message', "Welcome to K-Chat!") // send message to front end 
-
-  // emit to everybody
-  // io.emit()
-
-  // emit to everybody except youself
-
-  socket.broadcast.emit('message', formatMessage('Chat bot: ', `${userId} has joined the chat`))
-
-  socket.on('message', (message) => {
-    io.emit('message', message)
+    socket.broadcast.to(roomId).emit('message', formatMessage('Chat bot: ', `${userId} has joined the chat`))
+  
+    socket.on('message', (message) => {
+      io.in(roomId).emit('message', message)
+    })
+  
+    socket.on('disconnect', () => {
+      socket.to(roomId).emit('message', formatMessage('Chat bot: ', `${userId} user has left the chat`))
+      // io.emit works
+    })
   })
 
-  socket.on('disconnect', () => {
-    io.emit('message', formatMessage('Chat bot: ', `${userId} user has left the chat`))
-  })
 
 })
 

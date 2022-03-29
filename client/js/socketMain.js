@@ -5,6 +5,22 @@ const messageContainer =document.querySelector('.message-container')
 const chatForm = document.querySelector('.chat-message-form')
 const chatInput = document.querySelector('.chat-input')
 
+function getFormatSenderName(){
+  const url = new URL(location.href)
+  const pathes = url.pathname.split('/')
+  var userId = pathes[1]
+  var roomId = pathes[2]
+  return {userId: userId, roomId: roomId}
+}
+
+const senderInfo = getFormatSenderName()
+// need to be placed at the begining of this script run
+// also at the begining check the auth, if not loged in, log in
+// if disconnect, set db isLogged in to false
+
+//join socket room
+socket.emit('join-room', senderInfo)
+
 //socket waiting for 'message' emitts
 socket.on('message', message => {
   if(message){
@@ -36,9 +52,6 @@ chatForm.addEventListener('submit', (e) => {
   e.preventDefault() 
 
   // emit to other socket 
-  const senderInfo = getFormatSenderName() // need to be placed at the begining of this script run
-                                            // also at the begining check the auth, if not loged in, log in
-                                            // if disconnect, set db isLogged in to false
 
   const message = formatMessage(senderInfo.userId, chatInput.value)
   socket.emit('message', message)
