@@ -15,7 +15,7 @@ console.log(uuid.v4())
 function testUsers(){
   const Users = require("./database/users")
   Users.create({
-    userId: 'sampleId',
+    userId: 'sampleId2',
     firstName: 'yankang',
     lastName: 'xue',
     nickname: 'KanG98',
@@ -62,7 +62,6 @@ function testRoom(){
     });
 }
 
-
 function testJoinRoom(){
   const JoinRoom = require("./database/joinRoom")
   JoinRoom.create({
@@ -77,8 +76,24 @@ function testJoinRoom(){
     });
 }
 
-testJoinRoom()
+function testUserLogin(){
+  const UserLogin = require("./database/userLogin")
+  UserLogin.create({
+    userId: 'sampleId2',
+    deviceId: 'sampleDevice id'
+  })
+    .then((room) => {
+      console.log('success')
+    })
+    .catch((err) => {
+      console.log(err)
+    });
+}
+
+
+// testUserLogin()
 // testRoom()
+// testUsers()
 
 app.use(cors());
 app.use(bodyParser.json());
