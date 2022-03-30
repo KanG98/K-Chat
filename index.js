@@ -9,6 +9,8 @@ const socketio = require('socket.io')
 const db = require('./database/db')
 const uuid = require('uuid')
 
+const signupRoute = require('./routes/signupRoute')
+
 console.log(uuid.v4())
 
 
@@ -100,6 +102,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'client')))
+
+app.use('/', signupRoute)
 
 const io = socketio(server)
 // need auth

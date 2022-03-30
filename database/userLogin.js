@@ -7,10 +7,7 @@ const UserLogin = db.define("userLogin", {
     type: Sequelize.STRING,
     allowNull: false,
     references: {
-      // This is a reference to another model
       model: Users,
-
-      // This is the column name of the referenced model
       key: 'userId'
   }
   },
