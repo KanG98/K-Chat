@@ -5,7 +5,6 @@ const Users = db.define("users", {
   userId: {
     type: Sequelize.STRING,
     allowNull: false,
-    primaryKey: true
   },
   firstName: {
     type: Sequelize.STRING,

@@ -14,24 +14,6 @@ const signupRoute = require('./routes/signupRoute')
 console.log(uuid.v4())
 
 
-function testUsers(){
-  const Users = require("./database/users")
-  Users.create({
-    userId: 'sampleId2',
-    firstName: 'yankang',
-    lastName: 'xue',
-    nickname: 'KanG98',
-    email: 'test@yankang198.com',
-    password: 'password',
-    emailIsVerified: false,
-  })
-    .then((user) => {
-      console.log('success')
-    })
-    .catch((err) => {
-      console.log(err)
-    });
-}
 
 function testMessages(){
   const Messages = require("./database/messages")
@@ -143,7 +125,6 @@ io.on('connection', (socket) => {
   
     socket.on('disconnect', () => {
       socket.to(roomId).emit('message', formatMessage('Chat bot: ', `${userId} user has left the chat`))
-      // io.emit works
     })
   })
 })
