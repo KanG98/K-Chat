@@ -10,10 +10,7 @@ const db = require('./database/db')
 const uuid = require('uuid')
 
 const signupRoute = require('./routes/signupRoute')
-
-console.log(uuid.v4())
-
-
+const joinRoomRoute = require('./routes/joinRoomRoute')
 
 function testMessages(){
   const Messages = require("./database/messages")
@@ -50,7 +47,7 @@ function testJoinRoom(){
   const JoinRoom = require("./database/joinRoom")
   JoinRoom.create({
     userId: 'sample id',
-    roomId: 'sampleRoom id'
+    roomId: 'sampleRoom i'
   })
     .then((room) => {
       console.log('success')
@@ -78,6 +75,7 @@ function testUserLogin(){
 // testUserLogin()
 // testRoom()
 // testUsers()
+// testJoinRoom()
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -86,6 +84,7 @@ app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'client')))
 
 app.use('/', signupRoute)
+app.use('/', joinRoomRoute)
 
 const io = socketio(server)
 // need auth

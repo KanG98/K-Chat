@@ -7,8 +7,10 @@ const JoinRoom = db.define("joinRoom", {
     allowNull: false,
     primaryKey: true
   },
-  roomId: {    type: Sequelize.TEXT,
+  roomId: {    
+    type: Sequelize.STRING,
     allowNull: false,
+    primaryKey: true
   },
   joinTime: {
     type: 'TIMESTAMP',
