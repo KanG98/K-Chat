@@ -36,9 +36,17 @@ router.delete('/joinRoom/delete/:userId/:roomID', (req, res) => {
   res.send(joinRecord)
 })
 
-router.get('/joinRoom/get/:userId', async (req, res) => {
+router.get('/joinRoom/get/byUserId/:userId', async (req, res) => {
   const joinRecord = {
     userId: req.params.userId,
+  }
+  const records = await getJoinRoom(joinRecord)
+  res.send(records)
+})
+
+router.get('/joinRoom/get/byRoomId/:roomId', async (req, res) => {
+  const joinRecord = {
+    roomId: req.params.roomId,
   }
   const records = await getJoinRoom(joinRecord)
   res.send(records)
