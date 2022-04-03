@@ -11,6 +11,8 @@ const uuid = require('uuid')
 
 const signupRoute = require('./routes/signupRoute')
 const joinRoomRoute = require('./routes/joinRoomRoute')
+const messagesRoute = require('./routes/messagesRoute')
+const roomRoute = require('./routes/roomRoute')
 
 function testMessages(){
   const Messages = require("./database/messages")
@@ -85,6 +87,8 @@ app.use(express.static(path.join(__dirname, 'client')))
 
 app.use('/', signupRoute)
 app.use('/', joinRoomRoute)
+app.use('/', messagesRoute)
+app.use('/', roomRoute)
 
 const io = socketio(server)
 // need auth
