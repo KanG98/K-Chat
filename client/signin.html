@@ -20,13 +20,15 @@
       </section>
       <div>
         <label>Email</label>
-        <input type="text" name="username" id="username">
+        <input type="text" name="email" id="email">
       </div>
       <div>
         <label>Password</label>
         <input type="password" name="password" id="password">
+        <p style="color: red; font-size: 0;" class="login-tag">User not exist or wrong password</p>
         <i class="eye-slash"></i>
       </div>
+
       <button type="submit">Log In</button>
     </form>
     
@@ -48,6 +50,25 @@
     <footer></footer>
   </div>
 
+  <script type="text/javascript">
+    document.querySelector('form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      fetch(event.target.action, {
+          method: 'POST',
+          body: new URLSearchParams(new FormData(event.target))
+      }).then((res) => {
+          if(res.status == '406'){
+            const emailTag = document.querySelector('.login-tag')
+            emailTag.style.fontSize = '12px'
+          }
+          if(res.status == '200'){
+            window.location.href = "http://localhost:3030"
+          }
+      }).catch((error) => {
+          console.log(2)
+      });
+    });
 
+  </script>
 </body>
 </html>
