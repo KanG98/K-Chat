@@ -7,6 +7,7 @@ const uuid = require('uuid')
 
 const insertUser = require('../database/DMLs/insertUsers');
 const updateUser = require('../database/DMLs/updateUsers');
+const getUsers = require('../database/DMLs/getUsers');
 // const updateUser = require('../database/DMLs/updateUsers');
 
 const corsOptions ={
@@ -19,7 +20,7 @@ router.use(cors(corsOptions))
 
 // json parse used to handle post request 
 
-router.post('/user/signup', jsonParser, (req, res) => {
+router.post('/user/signup', jsonParser, async (req, res) => {
   userId = uuid.v4()
   newUser = {
               userId: userId,
@@ -29,10 +30,16 @@ router.post('/user/signup', jsonParser, (req, res) => {
               email: req.body.email,
               password: req.body.password,
             }
+  const u = await getUsers({email: newUser.email})
+  .then((u) => {
+    if(u !== null){
+      res.status(406).send()
+    }else{
+      insertUser(newUser)
+      res.status(200).send()
+    }
+  })
 
-  insertUser(newUser)
-  res.send(`${newUser.email} signed up!`)// this should be returned differently
-  // need to handle if primary key repeated
 })
 
 router.post('/user/updateInfo',jsonParser, (req, res) => {

@@ -5,21 +5,80 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign up</title>
-</head>
+  <link rel="stylesheet" href="./../css/signup.css" /></head>
+
 <body>
-  <form action="http://localhost:3030/user/signup" method="post">
-    <label for="firstName">First Name: </label>
-    <input type="text" name="firstName">
-    <label for="lastName">Last Name: </label>
-    <input type="text" name="lastName">
-    <label for="nickName">Nickname: </label>
-    <input type="text" name="nickname">
-    <label for="password">Password: </label>
-    <input type="text" name="password">
-    <label for="email">Email: </label>
-    <input type="text" name="email">
-    <button type="submit">Sign up</button>
-  </form>
-  
+  <div class="signup-page">
+    <div class="signup-image">
+      <h1>Chat with K-Chat!</h1>
+    </div>
+    <div class="signup-form">
+      <form action="http://localhost:3030/user/signup" method="post">
+        <section class="form-title">
+          <h2>Sign Up</h2>
+          <p>Already have an account? <a href="http://localhost:3030">Log In</a></p>
+        </section>
+        <div>
+          <label for="firstName">First Name: </label>
+          <input type="text" name="firstName" required>
+        </div>
+        <div>
+          <label for="lastName">Last Name: </label>
+          <input type="text" name="lastName" required>
+        </div>
+        <div>
+          <label for="nickName">Nickname: </label>
+          <input type="text" name="nickName" required>
+        </div>
+        <div>
+          <label for="password">Password: </label>
+          <input type="password" name="password" required>
+          <i class="eye-slash"></i>
+        </div>
+        <div>
+          <label for="email">Email: </label>
+          <input type="text" name="email" required/>
+          <p style="color: red; font-size: 0;" class="email-tag">Email had been used</p>
+        </div>
+        <div>
+          <button type="submit">Sign up</button>
+        </div>
+      </form>
+    </div>
+    <footer></footer>
+  </div>
+
+  <script type="text/javascript">
+    const eyeSlash = document.querySelector('.eye-slash')
+    eyeSlash.addEventListener('click', (e) => {
+      const input = document.querySelector('form input[name="password"]') 
+      if (input.type === 'text'){
+        input.type = 'password'
+      }else if (input.type === 'password'){
+        input.type = 'text'
+      }
+    })
+
+    document.querySelector('form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      fetch(event.target.action, {
+          method: 'POST',
+          body: new URLSearchParams(new FormData(event.target))
+      }).then((res) => {
+          if(res.status == '406'){
+            const emailTag = document.querySelector('.email-tag')
+            emailTag.style.fontSize = '12px'
+          }
+          if(res.status == '200'){
+            console.log('signed up')
+            window.location.href = "http://localhost:3030"
+          }
+      }).catch((error) => {
+          console.log(2)
+      });
+    });
+
+  </script>
+
 </body>
 </html>

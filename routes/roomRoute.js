@@ -14,6 +14,14 @@ const corsOptions ={
 
 router.use(cors(corsOptions))
 
+router.get('/chat/:userId/:roomId', (req, res) =>{
+  // works with /:userId/:roomId
+  // but doesnt work with /chat/:userId/:roomId
+  res.render('chatRoom.html')
+  // userId = req.params.userId
+  // roomId = req.params.roomId
+})
+
 router.post('/room/insert', jsonParser, (req, res) => {
   newRoom = { 
               roomName: req.body.roomName,

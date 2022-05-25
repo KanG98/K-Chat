@@ -1,3 +1,5 @@
+const res = require("express/lib/response");
+
 function insertUser(newUser){
   const Users = require("../users")
   Users.create({
@@ -13,8 +15,7 @@ function insertUser(newUser){
       console.log(`User ${newUser.nickname} created successful`)
     })
     .catch((err) => {
-      console.log(err ) // handle duplicate key error here 
-      // console.log(err)
+      console.log(err )
     });
 }
 

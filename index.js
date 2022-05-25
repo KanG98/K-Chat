@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const session = require('express-session')
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const app = express();
@@ -13,6 +14,15 @@ const signupRoute = require('./routes/signupRoute')
 const joinRoomRoute = require('./routes/joinRoomRoute')
 const messagesRoute = require('./routes/messagesRoute')
 const roomRoute = require('./routes/roomRoute')
+const loginRoute = require('./routes/loginRoute')
+
+const {
+  SESS_LIFETIME = 1000 * 60 * 10, // 10 min session 
+  SESS_NAME = 'sid',
+  SESS_SECRET = 'my secret'
+} = process.env
+
+
 
 function testMessages(){
   const Messages = require("./database/messages")
@@ -78,6 +88,17 @@ function testUserLogin(){
 // testRoom()
 // testUsers()
 // testJoinRoom()
+app.use(session({
+  name: SESS_NAME,
+  resave: false,
+  saveUninitialized: false,
+  secret: SESS_SECRET,
+  // store: ... // eg. mongostore
+  cookie:{
+    maxAge: SESS_LIFETIME,
+    sameSite: true,
+  }
+}))
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -89,6 +110,7 @@ app.use('/', signupRoute)
 app.use('/', joinRoomRoute)
 app.use('/', messagesRoute)
 app.use('/', roomRoute)
+app.use('/', loginRoute)
 
 const io = socketio(server)
 // need auth
@@ -99,11 +121,12 @@ app.engine('html', require('ejs').renderFile)
 app.set('views', path.join(__dirname, '/client'));
 
 
-app.get('/:userId/:roomId', (req, res) =>{
-  res.render('chatRoom.html')
-  userId = req.params.userId
-  roomId = req.params.roomId
-})
+// app.get('/chat/:userId/:roomId', (req, res) =>{
+//   res.render('chatRoom.html')
+//   userId = req.params.userId
+//   roomId = req.params.roomId
+// })
+
 
 function formatMessage(senderId, text){
   return (

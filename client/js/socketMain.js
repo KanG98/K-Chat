@@ -30,12 +30,22 @@ socket.on('message', message => {
     const timestamp = message.time.substring(11,19)
 
     // add message to message form
-    const newMessageBox = document.createElement("p")
+    const newMessageBox = document.createElement("div")
+    const newSenderInfoContainer = document.createElement("p")
     const newSenderInfo = document.createTextNode(`${senderId} ${timestamp}`)
+    const newMessageContainer = document.createElement("p")
     const newMessage = document.createTextNode(`${text}`)
-    newMessageBox.appendChild(newSenderInfo)
+
+    newSenderInfoContainer.appendChild(newSenderInfo)
+    newMessageContainer.appendChild(newMessage)
+    
+    newMessageBox.appendChild(newSenderInfoContainer)
     newMessageBox.appendChild(document.createElement("div"))
-    newMessageBox.appendChild(newMessage)
+    newMessageBox.appendChild(newMessageContainer)
+
+    newMessageBox.className = 'message-field'
+    newSenderInfoContainer.className = 'message-field-sender'
+    newMessageContainer.className = 'message-field-message'
 
     //append newMessageBox to messageContainer
     messageContainer.append(newMessageBox)

@@ -3,13 +3,13 @@ const db = require('./db')
 const Users = require('./users')
 
 const UserLogin = db.define("userLogin", {
-  userId: {
+  email: {
     type: Sequelize.STRING,
     allowNull: false,
     references: {
       model: Users,
-      key: 'userId'
-  }
+      key: 'email'
+    }
   },
   deviceId: {    
     // this should be uuid and be stored in localStorage

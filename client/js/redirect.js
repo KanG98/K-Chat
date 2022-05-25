@@ -6,7 +6,6 @@ loginForm.addEventListener('submit', (e) => {
     // check the username and password here
 
     // if correct, redirect to chatRoom page
-    console.log('pressed ')
     const userId = 'sampleId'
     const roomId = 'sampleRoomId'
     redirectToChatRoom(userId, roomId);
