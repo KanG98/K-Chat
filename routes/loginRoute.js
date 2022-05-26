@@ -37,12 +37,18 @@ const redirectLogin = (req, res, next) => {
 router.get('/', jsonParser, redirectLogin, (req, res) => {
 })
 
-router.get('/me/:userId', jsonParser, (req, res) => {
-  if(req.session.userId){
-    // pass userinfo into html
-    // get user info
-    // post to render html 
-    res.render('me.html')
+router.get('/me/:userId', jsonParser, async (req, res) => {
+  const userId = req.params.userId
+  if(userId){
+    await getUsers({userId: userId}).then(
+      (user) => {
+        console.log(user)
+        res.render('me', user)
+      }
+    ).catch(err => {
+      console.log(err)
+      res.render('errorPage', {error: "Internal server error"})
+    })
   }else{
     res.redirect('/')
   }

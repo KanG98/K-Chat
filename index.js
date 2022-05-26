@@ -119,6 +119,7 @@ var roomId = ""
 
 app.engine('html', require('ejs').renderFile)
 app.set('views', path.join(__dirname, '/client'));
+app.set("view engine", "ejs")
 
 
 // app.get('/chat/:userId/:roomId', (req, res) =>{
