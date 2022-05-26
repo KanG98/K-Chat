@@ -38,8 +38,9 @@ router.get('/', jsonParser, redirectLogin, (req, res) => {
 })
 
 router.get('/me/:userId', jsonParser, async (req, res) => {
-  const userId = req.params.userId
-  if(userId){
+
+  const userId = req.session.userId
+  if(userId == req.params.userId){
     await getUsers({userId: userId}).then(
       (user) => {
         console.log(user)
@@ -50,7 +51,7 @@ router.get('/me/:userId', jsonParser, async (req, res) => {
       res.render('errorPage', {error: "Internal server error"})
     })
   }else{
-    res.redirect('/')
+    res.redirect('http://localhost:3030/')
   }
 })
 
@@ -63,9 +64,7 @@ router.post('/user/login', jsonParser, async (req, res) => {
       } 
       else{
         res.status(406).send()
-      }
-    }
-  )
+      }})
 })
 
 router.get('/user/login', jsonParser, (req, res) => {
