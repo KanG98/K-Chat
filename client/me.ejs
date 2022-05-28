@@ -8,14 +8,14 @@
 </head>
 <body>
   <p>page about me </p>
-  <p><%- firstName %></p>
-  <p><%- lastName %></p>
-  <p><%- email %></p>
-  <p><%- nickname %></p>
-  <p><%- regisTime %></p>
+  <p class="user-firstname"><%- firstName %></p>
+  <p class="user-lastname"><%- lastName %></p>
+  <p class="user-email"><%- email %></p>
+  <p class="user-nickname"><%- nickname %></p>
+  <p class="user-registime"><%- regisTime %></p>
 
   <form action="http://localhost:3030/user/logout" method="post">
-    <button type="submit" >
+    <button type="submit" class="logout-button">
       log out
     </button>
   </form>

@@ -8,7 +8,7 @@ test('should send and receive message', async () => {
   });
   const page = await browser.newPage();
   await page.goto(
-    'http://localhost:3030/user1/room1'
+    'http://localhost:3030/chat/user1/room1'
   );
 
   // second user
@@ -21,7 +21,7 @@ test('should send and receive message', async () => {
 
   const page2 = await browser2.newPage();
   await page2.goto(
-    'http://localhost:3030/user2/room1'
+    'http://localhost:3030/chat/user2/room1' 
   );
 
   await page2.type('input.chat-input', 'Cindy');
@@ -44,6 +44,6 @@ test('should send and receive message', async () => {
   }); 
   await browser2.close()
 
-  expect(finalText1.concat(finalText2)).toStrictEqual(['user2 has joined the chat', 'David', 'David', 'Anna', 'user1 user has left the chat']); 
+  expect(finalText1.concat(finalText2)).toStrictEqual(['user2 has joined the chat', 'Cindy', 'Cindy', 'Kyle', 'user1 user has left the chat']); 
 
 }, 100000)

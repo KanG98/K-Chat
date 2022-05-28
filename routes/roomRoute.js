@@ -17,6 +17,8 @@ router.use(cors(corsOptions))
 router.get('/chat/:userId/:roomId', (req, res) =>{
   // works with /:userId/:roomId
   // but doesnt work with /chat/:userId/:roomId
+  console.log(req.params)
+  console.log(req.body)
   res.render('chatRoom.html')
   // userId = req.params.userId
   // roomId = req.params.roomId
