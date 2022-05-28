@@ -8,11 +8,11 @@
 </head>
 <body>
   <p>page about me </p>
-  <p class="user-firstname"><%- firstName %></p>
-  <p class="user-lastname"><%- lastName %></p>
-  <p class="user-email"><%- email %></p>
-  <p class="user-nickname"><%- nickname %></p>
-  <p class="user-registime"><%- regisTime %></p>
+  <p class="user-firstname"><%- user.firstName %></p>
+  <p class="user-lastname"><%- user.lastName %></p>
+  <p class="user-email"><%- user.email %></p>
+  <p class="user-nickname"><%- user.nickname %></p>
+  <p class="user-registime"><%- user.regisTime %></p>
 
   <form action="http://localhost:3030/user/logout" method="post">
     <button type="submit" class="logout-button">
@@ -20,9 +20,21 @@
     </button>
   </form>
 
-  <table class="host-rooms"></table>
-  <table class="joined-rooms"></table>
+  <div class="room-list">
+    <h2>My Rooms</h2>
+    <ul class="my-room-list"></ul>
+    <!-- </table> -->
+    <h2>Other Rooms</h2>
+    <ul class="other-room-list"></ul>
+  </div>
 
   <script src="/js/getUserRooms.js"></script>
+  <script>
+
+  const userId = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
+  getOtherRoom(userId)
+  getHostRoom(userId)
+
+  </script>
 </body>
 </html>

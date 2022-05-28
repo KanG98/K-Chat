@@ -28,7 +28,6 @@ router.get('/chat/:userId/:roomId', (req, res) =>{
 
 router.get('/room/:userId', async (req, res) =>{
   const hostRooms = await getUserHostRoom(req.params.userId)
-  console.log(hostRooms)
   res.send(hostRooms)
 })
 

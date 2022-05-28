@@ -6,6 +6,8 @@ const cors = require('cors')
 const uuid = require('uuid');
 const UserLogin = require('../database/userLogin');
 const getUsers = require('../database/DMLs/getUsers');
+const getUserHostRoom = require('../database/DMLs/getUserHostRoom');
+const getJoinRoom = require('../database/DMLs/getJoinRoom');
 
 // const updateUser = require('../database/DMLs/updateUsers');
 
@@ -41,15 +43,23 @@ router.get('/me/:userId', jsonParser, async (req, res) => {
 
   const userId = req.session.userId
   if(userId == req.params.userId){
-    await getUsers({userId: userId}).then(
-      (user) => {
-        console.log(user)
-        res.render('me', user)
+    await Promise.all([getUsers({ userId: userId}), 
+                       getUserHostRoom(userId)], 
+                       getJoinRoom({userId: userId})).then(
+      ([user, hostRooms, otherRooms]) => {
+        console.log(otherRooms)
+        res.render('me', {user: user, hostRooms: hostRooms, otherRooms: otherRooms})
       }
-    ).catch(err => {
-      console.log(err)
-      res.render('errorPage', {error: "Internal server error"})
-    })
+    )    
+    // await getUsers({userId: userId}).then(
+    //   (user) => {
+    //     console.log(user)
+    //     res.render('me', user)
+    //   }
+    // ).catch(err => {
+    //   console.log(err)
+    //   res.render('errorPage', {error: "Internal server error"})
+    // })
   }else{
     res.redirect('http://localhost:3030/')
   }
