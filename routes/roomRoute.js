@@ -4,7 +4,9 @@ var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json()
 const cors = require('cors')
 
+const getUserHostRoom = require('../database/DMLs/getUserHostRoom')
 const deleteRoom = require('../database/DMLs/deleteRoom');
+const insertRoom = require('../database/DMLs/insertRoom')
 
 const corsOptions ={
   origin:'*', 
@@ -24,11 +26,18 @@ router.get('/chat/:userId/:roomId', (req, res) =>{
   // roomId = req.params.roomId
 })
 
+router.get('/room/:userId', async (req, res) =>{
+  const hostRooms = await getUserHostRoom(req.params.userId)
+  console.log(hostRooms)
+  res.send(hostRooms)
+})
+
 router.post('/room/insert', jsonParser, (req, res) => {
   newRoom = { 
               roomName: req.body.roomName,
               hostUserId: req.body.hostUserId
             }
+  console.log(newRoom)
   insertRoom(newRoom)
   res.send(`${newRoom.roomId} Inserted!`)
 })
