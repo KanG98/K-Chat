@@ -15,6 +15,7 @@ const joinRoomRoute = require('./routes/joinRoomRoute')
 const messagesRoute = require('./routes/messagesRoute')
 const roomRoute = require('./routes/roomRoute')
 const loginRoute = require('./routes/loginRoute')
+const userInfoRoute = require('./routes/userInfoRoute')
 
 const {
   SESS_LIFETIME = 1000 * 60 * 10, // 10 min session 
@@ -111,6 +112,7 @@ app.use('/', joinRoomRoute)
 app.use('/', messagesRoute)
 app.use('/', roomRoute)
 app.use('/', loginRoute)
+app.use('/', userInfoRoute)
 
 const io = socketio(server)
 // need auth
