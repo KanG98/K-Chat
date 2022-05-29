@@ -24,7 +24,7 @@ function getOtherRoom(userId){
 function mapRoomList(userId, rooms, className){
   const myRoomListElm = document.getElementsByClassName(className)[0]
   rooms.map((room) => {
-    const li = document.createElement('li')
+    const li = document.createElement('div')
     li.className = "room-li"
     li.appendChild(document.createTextNode(room['roomId'])) 
     myRoomListElm.appendChild(li)

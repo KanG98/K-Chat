@@ -1,0 +1,34 @@
+.my-room-list, .other-room-list {
+  border: solid 0px;
+  width: 400px; 
+  height: 100px; 
+  overflow: auto;
+  background-color:rgba(246, 245, 245, 0.5) ;
+  padding: 0;
+}
+
+.room-li {
+  height: 60px;
+  width: 100%;
+}
+
+.room-li:hover {
+  background-color: rgba(226, 225, 225, 0.245);
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+@media screen and (min-width: 900px) {
+  /* big screen */
+  .my-room-list, .other-room-list {
+    width: 450px
+  }
+}
