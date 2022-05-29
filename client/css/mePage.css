@@ -36,6 +36,29 @@ nav {
 .show { display: block; }
 .show div:hover {background-color: #ddd;}
 
+.room-list-head {
+  display: flex;
+  position: relative;
+}
+
+.add-sign {
+  position: absolute;
+  background-image: url("../src/plus.png");
+  background-size: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: background-color 0.3s ease;
+  height: 30px;
+  width: 30px;
+  border: solid 0.1px;
+  border-radius: 50%;
+  top: 15px;
+  left: 160px;
+}
+
+.add-sign:hover{
+  background-color: rgba(182, 182, 182, 0.705);
+}
 
 .my-room-list, .other-room-list {
   border: solid 0px;
