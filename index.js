@@ -124,13 +124,6 @@ app.set('views', path.join(__dirname, '/client'));
 app.set("view engine", "ejs")
 
 
-// app.get('/chat/:userId/:roomId', (req, res) =>{
-//   res.render('chatRoom.html')
-//   userId = req.params.userId
-//   roomId = req.params.roomId
-// })
-
-
 function formatMessage(senderId, text){
   return (
     {

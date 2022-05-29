@@ -17,13 +17,13 @@ const corsOptions ={
 router.use(cors(corsOptions))
 
 router.get('/chat/:userId/:roomId', (req, res) =>{
-  // works with /:userId/:roomId
-  // but doesnt work with /chat/:userId/:roomId
-  console.log(req.params)
-  console.log(req.body)
-  res.render('chatRoom.html')
-  // userId = req.params.userId
-  // roomId = req.params.roomId
+  const userId = req.session.userId
+  if(userId && new Date(req.session.cookie._expires) > new Date()){
+    res.render('chatRoom.html')
+  }
+  else {
+    res.redirect('/')
+  }
 })
 
 router.get('/room/:userId', async (req, res) =>{
