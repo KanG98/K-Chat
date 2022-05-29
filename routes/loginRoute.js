@@ -29,7 +29,11 @@ router.use(cors(corsOptions))
 const redirectLogin = (req, res, next) => {
   console.log(req.session)
   const userId = req.session.userId
-  if(userId){
+  
+  if(userId && new Date(req.session.cookie._expires) > new Date()){
+    console.log(new Date(req.session.cookie._expires) )
+    console.log(new Date())
+    console.log(new Date(req.session.cookie._expires) > new Date())
     res.redirect(`/me/${userId}`)
   }else{
     res.redirect('/user/login')
@@ -43,23 +47,7 @@ router.get('/me/:userId', jsonParser, async (req, res) => {
 
   const userId = req.session.userId
   if(userId == req.params.userId){
-    await Promise.all([getUsers({ userId: userId}), 
-                       getUserHostRoom(userId)], 
-                       getJoinRoom({userId: userId})).then(
-      ([user, hostRooms, otherRooms]) => {
-        console.log(otherRooms)
-        res.render('me', {user: user, hostRooms: hostRooms, otherRooms: otherRooms})
-      }
-    )    
-    // await getUsers({userId: userId}).then(
-    //   (user) => {
-    //     console.log(user)
-    //     res.render('me', user)
-    //   }
-    // ).catch(err => {
-    //   console.log(err)
-    //   res.render('errorPage', {error: "Internal server error"})
-    // })
+    res.render('me')
   }else{
     res.redirect('http://localhost:3030/')
   }
