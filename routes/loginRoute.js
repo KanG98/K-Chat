@@ -47,7 +47,7 @@ router.get('/me/:userId', jsonParser, async (req, res) => {
 
   const userId = req.session.userId
   if(userId == req.params.userId){
-    res.render('me')
+    res.render('me.html')
   }else{
     res.redirect('http://localhost:3030/')
   }

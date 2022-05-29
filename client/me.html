@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/mePage.css">
+  <title>Document</title>
+</head>
+<body>
+  <nav>
+    <div class="icon">nav bar</div>
+    <div class="user-profile">
+      <div class="user-firstname" onclick="dropdownEvent()"></div>
+        <div class="dropdown-content">
+          <div class="user-lastname"></div>
+          <div class="user-email"></div>
+          <div class="user-nickname"></div>
+          <div class="user-registime"></div>
+          <form action="http://localhost:3030/user/logout" method="post">
+            <button type="submit" class="logout-button">
+              log out
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <div class="room-list">
+    <h2>My Rooms</h2>
+    <ul class="my-room-list"></ul>
+    <!-- </table> -->
+    <h2>Other Rooms</h2>
+    <ul class="other-room-list"></ul>
+  </div>
+
+  <script src="/js/mePageEvents.js"></script>
+  <script src="/js/getUserRooms.js"></script>
+  <script src="/js/getUserInfo.js"></script>
+  <script>
+    const userId = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
+    getHostRoom(userId)
+    getOtherRoom(userId)
+    getUserInfoById(userId)
+  </script>
+</body>
+</html>

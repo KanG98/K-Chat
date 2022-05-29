@@ -20,11 +20,11 @@ test('should display user info and joined rooms', async () => {
     return messages.map(option => option.textContent)
   }); 
 
-  const userHostedRooms = await page.$$eval('.my-room-list > li', messages => {
+  const userHostedRooms = await page.$$eval('.my-room-list .room-li', messages => {
     return messages.map(option => option.textContent)
   }); 
 
-  const userJoinedRooms = await page.$$eval('.other-room-list > li', messages => {
+  const userJoinedRooms = await page.$$eval('.other-room-list .room-li', messages => {
     return messages.map(option => option.textContent)
   }); 
 

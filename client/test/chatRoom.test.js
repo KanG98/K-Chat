@@ -8,8 +8,13 @@ test('should send and receive message', async () => {
   });
   const page = await browser.newPage();
   await page.goto(
-    'http://localhost:3030/chat/user1/room1'
+    'http://localhost:3030'
   );
+
+  await page.type('#email', 'yk');
+  await page.type('#password', 'yankang');
+  await page.click('.login-button')
+  await page.click('.room-li');
 
   // second user
 
@@ -21,9 +26,14 @@ test('should send and receive message', async () => {
 
   const page2 = await browser2.newPage();
   await page2.goto(
-    'http://localhost:3030/chat/user2/room1' 
+    'http://localhost:3030' 
   );
 
+  await page2.type('#email', 'test');
+  await page2.type('#password', 'test');
+  await page2.click('.login-button')
+  await page2.click('.other-room-list .room-li');
+ 
   await page2.type('input.chat-input', 'Cindy');
   await page2.click('.chat-send-btn');
 
@@ -44,47 +54,47 @@ test('should send and receive message', async () => {
   }); 
   await browser2.close()
 
-  expect(finalText1.concat(finalText2)).toStrictEqual(['user2 has joined the chat', 'Cindy', 'Cindy', 'Kyle', 'user1 user has left the chat']); 
+  expect(finalText1.concat(finalText2)).toStrictEqual(['ae724512-b73d-4cf9-ac35-6a17f4015f56 has joined the chat', 'Cindy', 'Cindy', 'Kyle', 'c0d871b5-0f4e-4bb5-acf0-b3c93e3ae4fa user has left the chat']); 
 
 }, 100000)
 
 
-test('should go to main page when there is no session', async () => {
-  const browser = await puppeteer.launch({
-    headless: false,
-    slowMo: 80,
-    args: ['--window-size=900,1080']
-  });
-  const page = await browser.newPage();
-  await page.goto(
-    'http://localhost:3030/chat/user1/room1'
-  );
-  browser.close()
-  expect(page.url == "http://localhost:3030/user/login")
+// test('should go to main page when there is no session', async () => {
+//   const browser = await puppeteer.launch({
+//     headless: false,
+//     slowMo: 80,
+//     args: ['--window-size=900,1080']
+//   });
+//   const page = await browser.newPage();
+//   await page.goto(
+//     'http://localhost:3030/chat/user1/room1'
+//   );
+//   browser.close()
+//   expect(page.url == "http://localhost:3030/user/login")
 
-}, 100000)
+// }, 100000)
 
-test('should go to main when the session is logged out', async () => {
-  const browser = await puppeteer.launch({
-    headless: false,
-    slowMo: 80,
-    args: ['--window-size=900,1080']
-  });
-  const page = await browser.newPage();
-  await page.goto(
-    'http://localhost:3030/user/login'
-  )
+// test('should go to main when the session is logged out', async () => {
+//   const browser = await puppeteer.launch({
+//     headless: false,
+//     slowMo: 80,
+//     args: ['--window-size=900,1080']
+//   });
+//   const page = await browser.newPage();
+//   await page.goto(
+//     'http://localhost:3030/user/login'
+//   )
 
-  await page.type('#email', 'test');
-  await page.type('#password', 'test');
-  await page.click('.login-button')
+//   await page.type('#email', 'test');
+//   await page.type('#password', 'test');
+//   await page.click('.login-button')
 
 
-  await page.click('.logout-button')
+//   await page.click('.logout-button')
 
-  await page.goto(
-    'http://localhost:3030/chat/ae724512-b73d-4cf9-ac35-6a17f4015f56/942efb83-5277-474a-b64b-f0b927c1a051'
-  )
-  browser.close()
-  expect(page.url == "http://localhost:3030/user/login")
-}, 100000)
+//   await page.goto(
+//     'http://localhost:3030/chat/ae724512-b73d-4cf9-ac35-6a17f4015f56/942efb83-5277-474a-b64b-f0b927c1a051'
+//   )
+//   browser.close()
+//   expect(page.url == "http://localhost:3030/user/login")
+// }, 100000)

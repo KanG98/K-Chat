@@ -18,7 +18,7 @@ const loginRoute = require('./routes/loginRoute')
 const userInfoRoute = require('./routes/userInfoRoute')
 
 const {
-  SESS_LIFETIME = 1000 * 60 * 10, // 10 min session 
+  SESS_LIFETIME = 1000 * 60 * 60, // 60 min session 
   SESS_NAME = 'sid',
   SESS_SECRET = 'my secret'
 } = process.env
