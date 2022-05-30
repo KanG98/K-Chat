@@ -1,9 +1,9 @@
 body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: rgb(235, 237, 234);
-  font-family: 'Montserrat', sans-serif;
+  --primaryColor: #9fa0fd;
+  --lightPrimaryColor:#dfdfff;
+  --boldPrimaryColor: #8a8cff;
+  font-family: 'Rubik', sans-serif;
+  margin:0;
 }
 
 h1 {

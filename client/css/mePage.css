@@ -1,40 +1,96 @@
 body {
-  background-color: rgb(235, 237, 234);
+  --primaryColor: #9fa0fd;
+  --lightPrimaryColor:#dfdfff;
+  --boldPrimaryColor: #8a8cff;
+  font-family: 'Rubik', sans-serif;
+  /* font-weight: 900; */
+  margin:0;
 }
 
 nav {
+  color: black;
+  height: 84px;
   display: flex;
-  padding-top: 20px;  
+  border-bottom: solid 1px;
 
 }
 
 .icon {
-  
+  display: flex;
+  margin: 20px;
+}
+
+.icon-img {
+  background-image: url("./../src/chat.png");
+  background-repeat: no-repeat;
+  background-size: 50px;
+  height: 64px;
+  width: 64px;
+}
+
+.icon > p {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+
 }
 
 .user-profile {
+  margin: 30px;
   margin-left: auto;
-  margin-right: 300px;
+  color:var(--primaryColor);
+  border: solid var(--primaryColor);
+  border-radius: 30px;
+  height: 30px;
+  width: auto;
+  padding: 8px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
+
+.user-profile > div {
+  position: relative;
+  top: 5px;
+  text-align: center;
+}
+
+.user-profile:hover {
+  color: white;
+  background-color: var(--primaryColor);
+  font-weight: 1000;
+  transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  
+}
+
 
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
+  margin-top: 10px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  border-radius: 20px;
 }
 
 .dropdown-content div {
   color: black;
+  margin-top: 3px;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 
 .show { display: block; }
-.show div:hover {background-color: #ddd;}
+.show div:hover {
+  background-color: var(--lightPrimaryColor); 
+  border-radius: 20px;
+  transition: all .2s ease;
+  -webkit-transition: all .2s ease;  
+}
 
 .room-list-head {
   display: flex;
@@ -93,15 +149,15 @@ nav {
   .my-room-list, .other-room-list {
     width: 450px
   }
-
   /* user profile hover dropdown */
 
-  
-  .dropdown-content div:hover {background-color: #ddd;}
+  .dropdown-content div:hover {
+    background-color: var(--lightPrimaryColor); 
+    border-radius: 20px;
+    transition: all .2s ease;
+    -webkit-transition: all .2s ease;  
+  }
   
   .user-profile:hover .dropdown-content {display: block;}
-  
-  .user-profile:hover .user-firstname {background-color: #3e8e41;}
-
   
 }
