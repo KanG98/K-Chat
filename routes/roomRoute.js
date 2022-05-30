@@ -3,10 +3,12 @@ const router = express.Router();
 var bodyParser = require('body-parser') 
 var jsonParser = bodyParser.json()
 const cors = require('cors')
+const axios = require('axios')
 
 const getUserHostRoom = require('../database/DMLs/getUserHostRoom')
 const deleteRoom = require('../database/DMLs/deleteRoom');
-const insertRoom = require('../database/DMLs/insertRoom')
+const insertRoom = require('../database/DMLs/insertRoom');
+const req = require('express/lib/request');
 
 const corsOptions ={
   origin:'*', 
@@ -31,14 +33,22 @@ router.get('/room/:userId', async (req, res) =>{
   res.send(hostRooms)
 })
 
+router.get('/room/create/:userId', (req, res) => {
+  if(req.session.userId && req.session.userId == req.params.userId)
+    res.render('createRoom.html')
+  else
+    res.render('signin.html')
+})
+
 router.post('/room/insert', jsonParser, (req, res) => {
+  if(!req.session) res.render('signin.html')
   newRoom = { 
               roomName: req.body.roomName,
-              hostUserId: req.body.hostUserId
+              hostUserId: req.session.userId
             }
-  console.log(newRoom)
   insertRoom(newRoom)
-  res.send(`${newRoom.roomId} Inserted!`)
+  res.redirect('/')
+  
 })
 
 // route for delete 

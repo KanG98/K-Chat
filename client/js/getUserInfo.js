@@ -20,5 +20,5 @@ function mapUserInfo(user){
   lastNameElm.textContent = user['lastName']
   emailElm.textContent = user['email']
   nickNameElm.textContent = user['nickname']
-  regisTimeElm.textContent = user['regisTime']
+  // regisTimeElm.textContent = user['regisTime']
 }

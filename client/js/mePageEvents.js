@@ -3,10 +3,8 @@ function dropdownEvent(){
 }
 
 function createRoom(){
-  console.log("create room")
-  // generate field for info 
-  // the form submit will ping backend create room api
-
+  const userId = window.location.href.split('/')[window.location.href.split('/').length-1]
+  window.location.href = `http://localhost:3030/room/create/${userId}`
 }
 
 window.onclick = function(event) {
