@@ -12,41 +12,54 @@
 </head>
 <body>
   <nav>
-    <div class="icon">
+    <div class="icon" onclick="window.location='http://localhost:3030/'">
       <div class="icon-img"></div>
       <p>K-Chat</p>
-    </div>    
-    <div class="user-profile">
-      <div class="user-firstname" onclick="dropdownEvent()"></div>
-        <div class="dropdown-content">
-          <div class="user-lastname"></div>
-          <div class="user-email"></div>
-          <div class="user-nickname"></div>
-          <div class="user-registime"></div>
-          <form action="http://localhost:3030/user/logout" method="post">
-            <button type="submit" class="logout-button">
-              log out
-            </button>
-          </form>
+    </div>   
+
+      <div class="user-profile">
+        <div class="user-firstname" onclick="dropdownEvent()"></div>
+          <div class="dropdown-content">
+            <div class="user-lastname"></div>
+            <div class="user-email"></div>
+            <div class="user-nickname"></div>
+            <div class="user-registime"></div>
+          </div>
         </div>
       </div>
-    </div>
+
+      <div class="log-out">
+        <form action="http://localhost:3030/user/logout" method="post">
+          <div onclick="javascript:this.parentNode.submit()" class="logout-button">log out</div>
+        </form>
+      </div>
   </nav>
 
 
 
-  <div class="room-list">
-    <div class="room-list-head">
-      <h2>My Rooms</h2>
-      <div class="add-sign" onclick="createRoom()"></div>
+  <div class="list-content">
+    <div>
+      <div class="room-list-head">
+        <h2>My Rooms</h2>
+        <div class="add-sign" onclick="createRoom()"></div>
+      </div>
+      <ul class="my-room-list"></ul>
+  
+      <div class="room-list-head">
+        <h2>Other Rooms</h2>
+        <div class="add-sign"></div>
+      </div>
+      <ul class="other-room-list"></ul>
     </div>
-    <ul class="my-room-list"></ul>
-    <!-- </table> -->
-    <div class="room-list-head">
-      <h2>Other Rooms</h2>
-      <div class="add-sign"></div>
+
+    <div>
+      <div class="guest-book-head">
+        <h2>Guest Book</h2>
+        <!-- <h3>Leave your global comment!</h3> -->
+        <div class="add-sign"></div>
+      </div>
+      <ul class="guest-book-comments"></ul>
     </div>
-    <ul class="other-room-list"></ul>
   </div>
 
   <script src="/js/mePageEvents.js"></script>

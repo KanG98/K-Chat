@@ -3,7 +3,6 @@ body {
   --lightPrimaryColor:#dfdfff;
   --boldPrimaryColor: #8a8cff;
   font-family: 'Rubik', sans-serif;
-  /* font-weight: 900; */
   margin:0;
 }
 
@@ -11,7 +10,7 @@ nav {
   color: black;
   height: 84px;
   display: flex;
-  border-bottom: solid 1px;
+  border-bottom: solid 1px var(--lightPrimaryColor);
 
 }
 
@@ -35,8 +34,7 @@ nav {
   letter-spacing: -0.04em;
 
 }
-
-.user-profile {
+.user-profile, .log-out {
   margin: 30px;
   margin-left: auto;
   color:var(--primaryColor);
@@ -49,21 +47,23 @@ nav {
   padding-bottom: 2px;
 }
 
-.user-profile > div {
+.user-profile > div, .logout-button{
   position: relative;
   top: 5px;
   text-align: center;
 }
 
-.user-profile:hover {
+.user-profile:hover, .log-out:hover{
   color: white;
   background-color: var(--primaryColor);
   font-weight: 1000;
-  transition: all 1s ease;
-  -webkit-transition: all 1s ease;
-  
+  transition: all .5s ease;
+  -webkit-transition: all .5s ease;
 }
 
+.log-out {
+  margin-left: 0px;
+}
 
 .dropdown-content {
   display: none;
@@ -92,7 +92,11 @@ nav {
   -webkit-transition: all .2s ease;  
 }
 
-.room-list-head {
+.list-content {
+  display: block;
+}
+
+.room-list-head, .guest-book-head {
   display: flex;
   position: relative;
 }
@@ -106,17 +110,18 @@ nav {
   transition: background-color 0.3s ease;
   height: 30px;
   width: 30px;
-  border: solid 0.1px grey;
+  border: solid 0.1px var(--boldPrimaryColor);
   border-radius: 50%;
   top: 15px;
   left: 160px;
 }
 
 .add-sign:hover{
-  background-color: rgba(182, 182, 182, 0.705);
+  /* background-color: rgba(182, 182, 182, 0.705); */
+  background-color: var(--lightPrimaryColor);
 }
 
-.my-room-list, .other-room-list {
+.my-room-list, .other-room-list, .guest-book-comments{
   border: solid 0px;
   width: 400px; 
   height: 100px; 
@@ -131,7 +136,8 @@ nav {
 }
 
 .room-li:hover {
-  background-color: rgba(226, 225, 225, 0.245);
+  /* background-color: rgba(226, 225, 225, 0.245); */
+  background-color: var(--lightPrimaryColor);
 }
 
 ::-webkit-scrollbar {
@@ -146,8 +152,14 @@ nav {
 }
 @media screen and (min-width: 900px) {
   /* big screen */
-  .my-room-list, .other-room-list {
+
+  .list-content {
+    display: flex;
+  }
+  
+  .my-room-list, .other-room-list, .guest-book-comments{
     width: 450px
+    
   }
   /* user profile hover dropdown */
 

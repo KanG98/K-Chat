@@ -113,7 +113,7 @@ h1 span {
   position: relative;
   top: 20px;
   display: inline-block;
-  animation: bounce .4s ease infinite alternate;
+  animation: bounce 1.2s ease infinite alternate;
   font-family: 'Titan One'cursive;
   font-size: 5vw;
   color: #fff;
@@ -126,7 +126,7 @@ h1 span {
       0 7px 0 transparent,
       0 8px 0 transparent,
       0 9px 0 transparent,
-      0 10px 10px rgba(0, 0, 0, 0.4);
+      0 10px 10px var(--lightPrimaryColor);
 }
 
 h1 span:nth-child(2) {
@@ -207,6 +207,6 @@ h1 span:nth-child(17) {
           0 10px 0 #CCC,
           0 11px 0 #CCC,
           0 12px 0 #CCC,
-          0 50px 25px rgba(0, 0, 0, 0.2);
+          0 50px 25px var(--lightPrimaryColor);
   }
 }
