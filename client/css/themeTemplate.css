@@ -1,0 +1,60 @@
+body {
+  --primaryColor: #9fa0fd;
+  --lightPrimaryColor:#dfdfff;
+  --boldPrimaryColor: #8a8cff;
+  font-family: 'Rubik', sans-serif;
+  /* font-weight: 900; */
+  margin:0;
+}
+
+nav {
+  color: black;
+  height: 84px;
+  display: flex;
+  border-bottom: solid 1px;
+}
+
+.icon {
+  display: flex;
+  margin: 20px;
+}
+
+.icon-img {
+  background-image: url("./../src/chat.png");
+  background-repeat: no-repeat;
+  background-size: 50px;
+  height: 64px;
+  width: 64px;
+}
+
+.icon > p {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+
+}
+
+.user-profile {
+  margin: 30px;
+  margin-left: auto;
+  color:var(--primaryColor);
+  border: solid var(--primaryColor);
+  border-radius: 30px;
+  height: 30px;
+  width: auto;
+  padding: 8px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.user-profile > p {
+  position: relative;
+  top: -10px;
+}
+
+.user-profile:hover {
+  color: white;
+  background-color: var(--primaryColor);
+  font-weight: 1000;
+}
