@@ -3,8 +3,6 @@ function dropdownEvent(){
 }
 
 function createRoom(){
-  // const userId = window.location.href.split('/')[window.location.href.split('/').length-1]
-  // window.location.href = `http://localhost:3030/room/create/${userId}`
   document.getElementsByClassName("create-room-form")[0].style.display = 'block';
   document.getElementsByClassName("add-sign")[0].style.display = 'none';
 }
@@ -13,6 +11,20 @@ function cancelCreateRoom(){
   document.getElementsByClassName("create-room-form")[0].style.display = 'none';
   document.getElementsByClassName("add-sign")[0].style.display = '';
 }
+
+function searchRoom(){
+  document.getElementsByClassName("search-room-form")[0].style.display = 'block';
+  document.getElementsByClassName("add-sign")[1].style.display = 'none';
+
+}
+
+function cancelSearchRoom(){
+  document.getElementsByClassName("search-room-form")[0].style.display = 'none';
+  document.getElementsByClassName("add-sign")[1].style.display = '';
+  document.getElementsByClassName("other-room-list")[0].style.display = 'block';
+  document.getElementsByClassName("search-room-list")[0].style.display = 'none';
+}
+
 
 window.onclick = function(event) {
   if (!event.target.matches('.user-firstname')) {

@@ -9,6 +9,7 @@ const getUserHostRoom = require('../database/DMLs/getUserHostRoom')
 const deleteRoom = require('../database/DMLs/deleteRoom');
 const insertRoom = require('../database/DMLs/insertRoom');
 const req = require('express/lib/request');
+const getRoom = require('../database/DMLs/getRoom');
 
 const corsOptions ={
   origin:'*', 
@@ -28,9 +29,14 @@ router.get('/chat/:userId/:roomId', (req, res) =>{
   }
 })
 
-router.get('/room/:userId', async (req, res) =>{
+router.get('/room/byHostId/:userId', async (req, res) =>{
   const hostRooms = await getUserHostRoom(req.params.userId)
   res.send(hostRooms)
+})
+
+router.get('/room/byRoomId/:roomId', async (req, res) =>{
+  const rooms = await getRoom(req.params.roomId)
+  res.send(rooms)
 })
 
 router.get('/room/create/:userId', (req, res) => {

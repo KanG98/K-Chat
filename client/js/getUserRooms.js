@@ -1,5 +1,5 @@
 function getHostRoom(userId){
-  fetch(`http://localhost:3030/room/${userId}`)
+  fetch(`http://localhost:3030/room/byHostId/${userId}`)
     .then(res => res.json())
     .then(res => {
       mapRoomList(userId, res, "my-room-list") 
@@ -20,9 +20,68 @@ function getOtherRoom(userId){
     })
 }
 
+function submitSearchRoom(){
+  document.getElementsByClassName("search-room-list")[0].style.display = 'block';
+  document.getElementsByClassName("other-room-list")[0].style.display = 'none';
+
+  const roomId = document.getElementById("search-room-name-input").value
+  fetch(`/room/byRoomId/${roomId}`)
+    .then(res => res.json())
+    .then(res => {
+      const mySearchRoomListElm = document.getElementsByClassName('search-room-list')[0]
+      // clear previous search
+      while(mySearchRoomListElm.firstChild){
+        mySearchRoomListElm.removeChild(mySearchRoomListElm.firstChild)
+      }
+
+      res.map((room) => {
+        const liDiv = document.createElement('div')
+        liDiv.className = "room-li-container"
+        const li = document.createElement('div')
+        li.className = "room-li"
+        const roomName =  room['roomName']
+        li.appendChild(document.createTextNode(roomName)) 
+        li.appendChild(document.createElement('br')) 
+        li.appendChild(document.createTextNode(room['roomId']))
+    
+        const joinLi = document.createElement('div')
+        joinLi.className = `join-room-btn_${room['roomId']}`
+        joinLi.appendChild(document.createTextNode('join'))
+    
+        liDiv.appendChild(li)
+        liDiv.appendChild(joinLi)
+        mySearchRoomListElm.appendChild(liDiv)
+    
+        joinLi.addEventListener('click', (e) => {
+          const userId = window.location.href.split('/')[window.location.href.split('/').length-1]
+          const roomId = e.target.className.split('_')[1]
+          fetch('/joinRoom/join',
+            {
+              method: 'POST',
+              headers: { 'Content-Type' : 'application/json'},
+              body: JSON.stringify(
+                {
+                  userId: userId,
+                  roomId: roomId
+                }
+              )
+            }
+          )
+          .then(document.location.reload())
+          .catch(e => console.log(e))
+
+        })
+
+      }) 
+    }
+
+    )
+
+}
+
 function mapRoomList(userId, rooms, className){
+  // for entering the chat room only
   const myRoomListElm = document.getElementsByClassName(className)[0]
-  // rooms first item is the user info
   rooms.map((room) => {
     const liDiv = document.createElement('div')
     liDiv.className = "room-li-container"
@@ -35,7 +94,8 @@ function mapRoomList(userId, rooms, className){
 
     const deleteLi = document.createElement('div')
     deleteLi.className = `delete-room-btn_${room['roomId']}`
-    deleteLi.appendChild(document.createTextNode('delete'))
+    const deleteTextNode = className == "my-room-list" ? "delete" : 'quit'
+    deleteLi.appendChild(document.createTextNode(deleteTextNode))
 
     liDiv.appendChild(li)
     liDiv.appendChild(deleteLi)

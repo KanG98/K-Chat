@@ -24,6 +24,7 @@ router.post('/joinRoom/join', jsonParser, (req, res) => {
     userId: req.body.userId,
     roomId: req.body.roomId,
   }
+  console.log(req.body)
   insertJoinRoom(newJoin)
   res.send(newJoin) // so something else if insertjoin fails
 })

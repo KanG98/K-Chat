@@ -122,7 +122,7 @@ nav {
   background-color: var(--lightPrimaryColor);
 }
 
-.create-room-form {
+.create-room-form, .search-room-form{
   /* border: solid 1px; */
   margin-top: 19px;
   margin-left: 50px;
@@ -141,6 +141,10 @@ nav {
   letter-spacing: 0.01em;
 }
 
+#search-room-name-input {
+  width: 175px;
+}
+
 @keyframes popout {
   from{transform:scale(0)}
 }
@@ -152,11 +156,11 @@ nav {
   background-image: url("./../src/checked.png");
 } */
 
-.cancel-create-room-btn {
+.cancel-create-room-btn, .cancel-search-room-btn {
   background-image: url("./../src/close.png");
 }
 /* .create-room-btn, .cancel-create-room-btn { */
-.cancel-create-room-btn{
+.cancel-create-room-btn, .cancel-search-room-btn{
   background-size: 35px;
   background-repeat: no-repeat;
   height: 35px;
@@ -165,12 +169,16 @@ nav {
   border-radius: 50%;
 }
 
-.cancel-create-room-btn:hover {
+.cancel-search-room-btn {
+
+}
+
+.cancel-create-room-btn:hover, .cancel-search-room-btn:hover {
   background-color: var(--lightPrimaryColor);
   transition: all 0.3s ease-in;
 }
 
-.my-room-list, .other-room-list, .guest-book-comments{
+.my-room-list, .other-room-list, .search-room-list, .guest-book-comments{
   border: solid 0px;
   width: 400px; 
   height: 300px; 
@@ -193,18 +201,28 @@ nav {
   display: flex;
 }
 
-div[class^='delete-room-btn_'] {
+
+div[class*='-room-btn_'] {
   background-color: var(--primaryColor);
 }
 
-div[class^='delete-room-btn_']:hover {
+div[class*='-room-btn_']:hover {
   background-color: red;
   transition: all 0.5s;
+}
+
+div[class*='join-room-btn_']:hover {
+  background-color: greenyellow;
+}
+
+.search-room-list {
+  display: none;
 }
 
 .guest-book {
   margin-left: 0px;
 }
+
 
 ::-webkit-scrollbar {
   -webkit-appearance: none;
