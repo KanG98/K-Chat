@@ -122,10 +122,58 @@ nav {
   background-color: var(--lightPrimaryColor);
 }
 
+.create-room-form {
+  /* border: solid 1px; */
+  margin-top: 19px;
+  margin-left: 50px;
+  /* background-color: #8a8cff; */
+  animation: popout 0.2s ease;
+}
+
+.room-name-input {
+  border-radius: 100px;
+  height: 20px;
+  border: solid 2.5px var(--boldPrimaryColor);
+  padding: 5px;
+  padding-left: 8px;
+  outline: var(--boldPrimaryColor);
+  font-size: 20px;
+  letter-spacing: 0.01em;
+}
+
+@keyframes popout {
+  from{transform:scale(0)}
+}
+@-webkit-keyframes popout {
+  from{-webkit-transform:scale(0)}
+}
+
+/* .create-room-btn {
+  background-image: url("./../src/checked.png");
+} */
+
+.cancel-create-room-btn {
+  background-image: url("./../src/close.png");
+}
+/* .create-room-btn, .cancel-create-room-btn { */
+.cancel-create-room-btn{
+  background-size: 35px;
+  background-repeat: no-repeat;
+  height: 35px;
+  width: 35px;
+  margin-left: 10px;
+  border-radius: 50%;
+}
+
+.cancel-create-room-btn:hover {
+  background-color: var(--lightPrimaryColor);
+  transition: all 0.3s ease-in;
+}
+
 .my-room-list, .other-room-list, .guest-book-comments{
   border: solid 0px;
   width: 400px; 
-  height: 100px; 
+  height: 300px; 
   overflow: auto;
   background-color:rgba(246, 245, 245, 0.5) ;
   padding: 0;
@@ -139,6 +187,19 @@ nav {
 .room-li:hover {
   /* background-color: rgba(226, 225, 225, 0.245); */
   background-color: var(--lightPrimaryColor);
+}
+
+.room-li-container {
+  display: flex;
+}
+
+div[class^='delete-room-btn_'] {
+  background-color: var(--primaryColor);
+}
+
+div[class^='delete-room-btn_']:hover {
+  background-color: red;
+  transition: all 0.5s;
 }
 
 .guest-book {

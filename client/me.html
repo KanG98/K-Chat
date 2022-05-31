@@ -41,7 +41,23 @@
     <div>
       <div class="room-list-head">
         <h2>My Rooms</h2>
+
+        <div>
         <div class="add-sign" onclick="createRoom()"></div>
+        <div class="create-room-form" style="display:none;">
+          <form action="http://localhost:3030/room/insert" method="post">
+            <div style="display: flex;">
+              <label for="roomName"></label>
+              <input class="room-name-input" type="text" name="roomName" placeholder="Room name" required>
+              <!-- <div class="create-room-btn" onclick="javascript:this.parentNode.parentNode.submit()"></div> -->
+              <div class="cancel-create-room-btn" onclick="cancelCreateRoom()"></div>
+            </div>
+            <div>
+            </div>
+          </form>
+        </div>
+        </div>
+
       </div>
       <ul class="my-room-list"></ul>
   

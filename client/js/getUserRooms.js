@@ -24,14 +24,31 @@ function getOtherRoom(userId){
 function mapRoomList(userId, rooms, className){
   const myRoomListElm = document.getElementsByClassName(className)[0]
   rooms.map((room) => {
+    const liDiv = document.createElement('div')
+    liDiv.className = "room-li-container"
     const li = document.createElement('div')
     li.className = "room-li"
-    li.appendChild(document.createTextNode(room['roomId'])) 
-    myRoomListElm.appendChild(li)
+    // li.appendChild(document.createTextNode(room['roomName'])) 
+    li.appendChild(document.createTextNode(room['roomName'])) 
+    li.appendChild(document.createElement('br')) 
+    li.appendChild(document.createTextNode(room['roomId']))
+    
+    const deleteLi = document.createElement('div')
+    deleteLi.className = `delete-room-btn_${room['roomId']}`
+    deleteLi.appendChild(document.createTextNode('delete'))
+
+    liDiv.appendChild(li)
+    liDiv.appendChild(deleteLi)
+    myRoomListElm.appendChild(liDiv)
 
     li.addEventListener('click', (e) => {
       // chat can only be entered when session.userId exists or not expired
       document.location.href = `http://localhost:3030/chat/${userId}/${room['roomId']}`
+    })
+
+    deleteLi.addEventListener('click', (e) => {
+      const roomId = e.target.className.split('_')[1]
+      fetch(`/room/delete/${roomId}`, { method: 'DELETE' }).then(() => {document.location.reload()})
     })
   }) 
 }
