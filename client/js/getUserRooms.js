@@ -1,19 +1,19 @@
-function getHostRoom(userId){
+function getHostRoom(userId, hasButton){
   fetch(`http://localhost:3030/room/byHostId/${userId}`)
     .then(res => res.json())
     .then(res => {
-      mapRoomList(userId, res, "my-room-list") 
+      mapRoomList(userId, res, "my-room-list", hasButton) 
     })
     .catch(function (error) {
       console.log(error);
     })
 }
 
-function getOtherRoom(userId){
+function getOtherRoom(userId, hasButton){
   fetch(`http://localhost:3030/joinRoom/get/byUserId/${userId}`)
     .then(res => res.json())
     .then(res => {
-      mapRoomList(userId, res, "other-room-list")
+      mapRoomList(userId, res, "other-room-list", hasButton)
     })
     .catch(function (error) {
       console.log(error);
@@ -79,7 +79,7 @@ function submitSearchRoom(){
 
 }
 
-function mapRoomList(userId, rooms, className){
+function mapRoomList(userId, rooms, className, hasButton){
   // for entering the chat room only
   const myRoomListElm = document.getElementsByClassName(className)[0]
   rooms.map((room) => {
@@ -93,9 +93,11 @@ function mapRoomList(userId, rooms, className){
     li.appendChild(document.createTextNode(room['roomId']))
 
     const deleteLi = document.createElement('div')
-    deleteLi.className = `delete-room-btn_${room['roomId']}`
-    const deleteTextNode = className == "my-room-list" ? "delete" : 'quit'
-    deleteLi.appendChild(document.createTextNode(deleteTextNode))
+    if (hasButton) {
+      deleteLi.className = `delete-room-btn_${room['roomId']}`
+      const deleteTextNode = className == "my-room-list" ? "delete" : 'quit'
+      deleteLi.appendChild(document.createTextNode(deleteTextNode))
+    }
 
     liDiv.appendChild(li)
     liDiv.appendChild(deleteLi)
@@ -107,12 +109,12 @@ function mapRoomList(userId, rooms, className){
     })
 
         
-    if(className == 'my-room-list'){
+    if(hasButton && className == 'my-room-list'){
       deleteLi.addEventListener('click', (e) => {
         const roomId = e.target.className.split('_')[1]
         fetch(`/room/delete/${roomId}`, { method: 'DELETE' }).then(() => {document.location.reload()})
       })
-    }else if (className == 'other-room-list'){
+    }else if (hasButton && className == 'other-room-list'){
       deleteLi.addEventListener('click', (e) => {
         const roomId = e.target.className.split('_')[1]
         fetch(`/joinRoom/delete/${userId}/${roomId}`, { method: 'DELETE' }).then(() => {document.location.reload()})

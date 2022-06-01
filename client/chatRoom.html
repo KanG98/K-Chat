@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/chatRoom.css" />
   <link rel="stylesheet" href="/css/mePage.css" />
   <title>K-Chat</title>
@@ -11,10 +14,36 @@
 </head>
 <body>
   
-  <div class="my-self">
-    My self
+  <nav>
+    <div class="icon" onclick="window.location='http://localhost:3030/'">
+      <div class="icon-img"></div>
+      <p>K-Chat</p>
+    </div>   
+
+      <div class="user-profile">
+        <div class="user-firstname" onclick="dropdownEvent()"></div>
+          <div class="dropdown-content">
+            <div class="user-lastname"></div>
+            <div class="user-email"></div>
+            <div class="user-nickname"></div>
+            <!-- <div class="user-registime"></div> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="log-out">
+        <form action="http://localhost:3030/user/logout" method="post">
+          <div onclick="javascript:this.parentNode.submit()" class="logout-button">log out</div>
+        </form>
+      </div>
+  </nav>
+  
+
+  <div class="back-to-lobby-btn">
+    <div class="back-to-lobby-btn-child"></div>
+    <p>Back To Lobby</p>
   </div>
-  <div>
+  <div class="chat-page-container">
     <div class="room-list">
       <h2>My Rooms</h2>
       <ul class="my-room-list"></ul>
@@ -54,8 +83,9 @@
     const userId = window.location.href.split('/')[window.location.href.split('/').length-2]
     getHostRoom(userId)
     getOtherRoom(userId)
+    getUserInfoById(userId)
 
-    const mySelfElm = document.getElementsByClassName('my-self')[0]
+    const mySelfElm = document.getElementsByClassName('back-to-lobby-btn')[0]
     mySelfElm.addEventListener('click', (e) => {
       window.location.href = `http://localhost:3030/me/${userId}`
     })

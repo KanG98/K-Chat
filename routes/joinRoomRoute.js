@@ -7,7 +7,6 @@ const uuid = require('uuid');
 const insertJoinRoom = require('../database/DMLs/insertJoinroom');
 const deleteJoinRoom = require('../database/DMLs/deleteJoinRoom');
 const getJoinRoom = require('../database/DMLs/getJoinRoom');
-const getUsers = require('../database/DMLs/getUsers');
 
 const corsOptions ={
   origin:'*', 

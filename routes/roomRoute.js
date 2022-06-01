@@ -21,7 +21,7 @@ router.use(cors(corsOptions))
 
 router.get('/chat/:userId/:roomId', (req, res) =>{
   const userId = req.session.userId
-  if(userId && new Date(req.session.cookie._expires) > new Date()){
+  if(userId==req.params.userId && new Date(req.session.cookie._expires) > new Date()){
     res.render('chatRoom.html')
   }
   else {

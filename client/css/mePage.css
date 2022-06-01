@@ -1,6 +1,7 @@
 body {
   --primaryColor: #9fa0fd;
   --lightPrimaryColor:#dfdfff;
+  --xlightPrimaryColor:#efeffc;
   --boldPrimaryColor: #8a8cff;
   font-family: 'Rubik', sans-serif;
   margin:0;
@@ -97,6 +98,11 @@ nav {
   margin-left: 10%;
 }
 
+.room-list {
+  margin-left: 40px;
+  height: 66vh;
+}
+
 .room-list-head, .guest-book-head {
   display: flex;
   position: relative;
@@ -181,9 +187,11 @@ nav {
 .my-room-list, .other-room-list, .search-room-list, .guest-book-comments{
   border: solid 0px;
   width: 400px; 
-  height: 300px; 
+  height: 33vh; 
   overflow: auto;
-  background-color:rgba(246, 245, 245, 0.5) ;
+  background-color:  var(--xlightPrimaryColor);
+  border-radius: 14px;
+  /* margin-left: 40px; */
   padding: 0;
 }
 
