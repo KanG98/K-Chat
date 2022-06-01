@@ -6,7 +6,10 @@ body {
   font-family: 'Rubik', sans-serif;
   /* font-weight: 900; */
   margin:0;
+
 }
+
+
 
 nav {
   color: black;
@@ -79,7 +82,7 @@ nav {
   position: relative;
   text-align: center;
   margin-top: 30px;
-  margin-left: 40px;
+  left: 30px;
 }
 
 .back-to-lobby-btn p {
@@ -115,16 +118,32 @@ nav {
 
 .back-to-lobby-btn:hover .back-to-lobby-btn-child, .back-to-lobby-btn:hover{
   border-right-color: var(--primaryColor);
-  transition: all 0.1s;
+  transition: all 0.4s;
 }
 
 .back-to-lobby-btn:hover {
   background-color: var(--primaryColor);
-  transition: all 0.1s;
+  transition: all 0.4s;
+  transform: translateX(-20px);
+}
+
+@keyframes slideInFromLeft {
+  0% {
+      transform: translateX(-100%);
+  }
+  100% {
+      transform: translateX(0);
+  }
+}
+
+.room-body {
+  padding-left: 10%;
+  animation: 1s ease-out 0s 1 slideInFromLeft;
 }
 
 .chat-page-container {
   display: flex;
+
 }
 
 .room-list {
