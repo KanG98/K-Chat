@@ -83,27 +83,26 @@ chatForm.addEventListener('submit', (e) => {
   fetch(`/user/getById/${senderInfo.userId}`)
     .then(res => res.json())
     .then(res => {
+      // call socket
       const message = formatMessage(senderInfo.userId, res.nickname, chatInput.value)
       socket.emit('message', message)
     })
+    .then(res => {
+      // store message to database
+      return   fetch('/messages/insert',
+       {method: 'POST',
+        headers: { 'Content-Type' : 'application/json'},
+        body: JSON.stringify({
+            senderId: senderInfo.userId,
+            roomId: senderInfo.roomId,
+            message: chatInput.value
+          })}).catch(e => console.log(e))})
+    .then(
+      res => {
+        // clean chat input
+        chatInput.value = ""
+        chatInput.focus()
+      }
+    )})
     .catch(e => console.log(e))
   
-  // store message info into message db
-
-  fetch('/messages/insert',
-  {
-    method: 'POST',
-    headers: { 'Content-Type' : 'application/json'},
-    body: JSON.stringify(
-      {
-        senderId: senderInfo.userId,
-        roomId: senderInfo.roomId,
-        message: chatInput.value
-      }
-  )})
-    .then(res => {
-      // reset chatinput
-      chatInput.value = ""
-      chatInput.focus()
-    })
-      .catch(e => console.log(e))})
