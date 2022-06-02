@@ -56,27 +56,16 @@ function submitSearchRoom(){
           const userId = window.location.href.split('/')[window.location.href.split('/').length-1]
           const roomId = e.target.className.split('_')[1]
           fetch('/joinRoom/join',
-            {
-              method: 'POST',
+            { method: 'POST',
               headers: { 'Content-Type' : 'application/json'},
               body: JSON.stringify(
-                {
-                  userId: userId,
-                  roomId: roomId
-                }
-              )
-            }
-          )
+                {userId: userId,
+                 roomId: roomId}
+              )})
           .then(document.location.reload())
           .catch(e => console.log(e))
-
         })
-
-      }) 
-    }
-
-    )
-
+      }) })
 }
 
 function mapRoomList(userId, rooms, className, hasButton){

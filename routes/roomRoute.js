@@ -71,7 +71,5 @@ router.delete('/room/delete/:roomId', jsonParser, (req, res) => {
 
 // route for update info 
 
-
-
 module.exports = router;
 

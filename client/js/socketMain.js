@@ -1,6 +1,6 @@
 const socket = io();
 
-//html tags
+// message container html tags
 const messageContainer =document.querySelector('.message-container')
 const chatForm = document.querySelector('.chat-message-form')
 const chatInput = document.querySelector('.chat-input')
@@ -14,13 +14,10 @@ function getFormatSenderName(){
 }
 
 function renderMessage(message){
-      // console.log(message)
-      // parse message
       const senderNickname = message.senderNickname
       const text = message.text
       // const timestamp = message.time.substring(11,19)
       const timestamp = new Date(message.time).toString().substring(4,24)
-  
   
       // add message to message form
       const newMessageBox = document.createElement("div")
@@ -40,7 +37,6 @@ function renderMessage(message){
       newSenderInfoContainer.className = 'message-field-sender'
       newMessageContainer.className = 'message-field-message'
   
-      //append newMessageBox to messageContainer
       messageContainer.append(newMessageBox)
   
       //keep newsest messages at the bottom 
@@ -62,12 +58,10 @@ function renderMessage(message){
 function renderChatHistory(){
   const roomId = getFormatSenderName()['roomId']
   const nicknameLookup = {}
-  let messageList = []
   fetch(`/messages/get/${roomId}`)
     .then(res => res.json())
     .then(messages => {
       messages.sort((a,b) => {return new Date(a['sentTime']) - new Date(b['sentTime'])})
-      messageList = [...messages]
       // get all user id, nickname map that appears in the messages
       const senderIdSet = new Set(messages.map( m => m['senderId'] ))
       const senderId = [...senderIdSet]
@@ -75,13 +69,13 @@ function renderChatHistory(){
                             fetch(`/user/getById/${id}`).then(res => res.json())
                               .then(res => nicknameLookup[id] = res.nickname)
                               .then(res => {
-                                messageList.map((message) => {  
+                                messages.map((message) => {  
                                 const messageForRender = {senderId: message['senderId'], 
                                                           time: message['sentTime'],
                                                           senderNickname: nicknameLookup[message['senderId']],
                                                           text: message['message']}
                                 renderMessage(messageForRender)
-                              })}).then(e => console.log(e))
+                              })}).catch(e => console.log(e))
       })})
     .catch(e => console.log(e))
 }
@@ -90,9 +84,6 @@ function renderChatHistory(){
 renderChatHistory()
 
 const senderInfo = getFormatSenderName()
-// need to be placed at the begining of this script run
-// also at the begining check the auth, if not loged in, log in
-// if disconnect, set db isLogged in to false
 
 //join socket room
 socket.emit('join-room', senderInfo)
@@ -104,10 +95,8 @@ socket.on('message', message => {
   }
 }); 
 
-//chat form event listener
-
 chatForm.addEventListener('submit', (e) => {
-  //prevent page to refresh
+  // prevent page to refresh
   e.preventDefault() 
 
   // emit to other socket 
