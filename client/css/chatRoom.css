@@ -261,10 +261,12 @@ nav {
   width: 80%;
 }
 
+
+
 @media screen and (max-width: 1100px) {
   /* small screen */
   .room-list-show-btn {
-    display: block;
+    display: none;
   }
 
   .room-list {
@@ -277,10 +279,12 @@ nav {
     /* background-color: aqua; */
     margin-left: 5%;
     margin-right: 5%;
+    width: 90%;
   }
   
   .message-container {
     /* 2 px mismatch */
+    height: 55vh;
     width: calc(100% - 2px);
   }
 
@@ -289,3 +293,11 @@ nav {
   }
 
 }
+
+/* @media screen and (min-width: 1101px) {
+  /* big screen */
+
+  /* .room-list {
+    display: block;
+  } 
+//} 
