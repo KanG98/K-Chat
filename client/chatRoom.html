@@ -44,13 +44,18 @@
     <div class="back-to-lobby-btn-child"></div>
     <p>Back To Lobby</p>
   </div>
+  
+  <div class="room-list-show-btn">Rooms</div>
+
   <div class="chat-page-container">
-    <div class="room-list">
-      <h2>My Rooms</h2>
-      <ul class="my-room-list"></ul>
-      <!-- </table> -->
-      <h2>Other Rooms</h2>
-      <ul class="other-room-list"></ul>
+    <div class="room-list-hide">
+      <div class="room-list">
+        <h2>My Rooms</h2>
+        <ul class="my-room-list"></ul>
+        <!-- </table> -->
+        <h2>Other Rooms</h2>
+        <ul class="other-room-list"></ul>
+      </div>
     </div>
     <div class="main-container">
       <div class="message-container"></div>
@@ -88,8 +93,16 @@
     getOtherRoom(userId)
     getUserInfoById(userId)
 
-    const mySelfElm = document.getElementsByClassName('back-to-lobby-btn')[0]
-    mySelfElm.addEventListener('click', (e) => {
+    const roomListShowBtn = document.getElementsByClassName('room-list-show-btn')[0]
+    roomListShowBtn.addEventListener('click', (e) => {
+      const roomList = document.getElementsByClassName('room-list')[0]
+      console.log(roomList)
+      const display = roomList.style.display;
+      roomList.style.display = display == 'block' ? 'none' : 'block';
+    })
+
+    const backToLobbyBtn = document.getElementsByClassName('back-to-lobby-btn')[0]
+    backToLobbyBtn.addEventListener('click', (e) => {
       window.location.href = `http://localhost:3030/me/${userId}`
     })
 

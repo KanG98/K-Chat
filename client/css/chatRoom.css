@@ -137,13 +137,25 @@ nav {
 }
 
 .room-body {
-  padding-left: 10%;
-  animation: 1s ease-out 0s 1 slideInFromLeft;
+  margin-left: 10%;
+  /* animation: 1s ease-out 0s 1 slideInFromLeft; */
 }
 
 .chat-page-container {
   display: flex;
 
+}
+
+.room-list-show{
+  background-color: rgb(19, 134, 210);
+  display: block; 
+}
+
+.room-list-show-btn {
+  background-color: #9fa0fd;
+  width: 40px;
+  height: 40px;
+  display: none;
 }
 
 .room-list {
@@ -152,12 +164,13 @@ nav {
 
 .main-container {
   width: 600px;
+  margin-left: 30px;
 }
 
 .message-container {
   background-color: var(--xlightPrimaryColor);
   height: 65vh;
-  width: 599px;
+  width: 598px;
   overflow-y: scroll;
   border: 1px solid white;
   border-top-left-radius: 14px;
@@ -165,7 +178,7 @@ nav {
   border-bottom: none;
   margin: 0 auto;
   margin-top: 67px;
-  margin-left: 29px;
+  /* margin-left: 29px; */
 }
 
 .chat-message-form {
@@ -192,7 +205,7 @@ nav {
   flex-wrap: wrap;
   align-items: stretch;
   width: 100%;
-  margin-left: 30px;
+  /* margin-left: 30px; */
 }
 
 .chat-input {
@@ -249,3 +262,31 @@ nav {
   padding: 10px;
 }
 
+@media screen and (max-width: 1100px) {
+  /* small screen */
+  .room-list-show-btn {
+    display: block;
+  }
+
+  .room-list {
+    display: none;
+  }
+  .room-body {
+    margin-left: 0;
+  }
+  .main-container {
+    /* background-color: aqua; */
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  
+  .message-container {
+    /* 2 px mismatch */
+    width: calc(100% - 2px);
+  }
+
+  .chat-message-form {
+    width: 100%;
+  }
+
+}
