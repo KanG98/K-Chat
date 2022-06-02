@@ -222,10 +222,26 @@ nav {
 .room-li:hover {
   /* background-color: rgba(226, 225, 225, 0.245); */
   background-color: var(--lightPrimaryColor);
+  -webkit-animation:normal;
+  -webkit-animation-name: run;
+  -webkit-animation-duration: .5s;
+}
+
+@-webkit-keyframes run {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .room-li-container {
   display: flex;
+  border-bottom: solid 0.8px var(--primaryColor);
   /* padding-right: 10px; */
 }
 
