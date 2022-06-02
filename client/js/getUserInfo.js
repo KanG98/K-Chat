@@ -10,6 +10,7 @@ function getUserInfoById(userId){
 }
 
 function mapUserInfo(user){
+  document.title = `K-Chat | ${user['firstName']}`
   const firstNameElm = document.getElementsByClassName('user-firstname')[0]
   const lastNameElm = document.getElementsByClassName('user-lastname')[0]
   const emailElm = document.getElementsByClassName('user-email')[0]
