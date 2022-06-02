@@ -41,12 +41,12 @@ function submitSearchRoom(){
         li.className = "room-li"
         const roomName =  room['roomName']
         li.appendChild(document.createTextNode(roomName)) 
-        li.appendChild(document.createElement('br')) 
+        li.appendChild(document.createElement('span')) 
         li.appendChild(document.createTextNode(room['roomId']))
     
         const joinLi = document.createElement('div')
         joinLi.className = `join-room-btn_${room['roomId']}`
-        joinLi.appendChild(document.createTextNode('join'))
+        // joinLi.appendChild(document.createTextNode('join'))
     
         liDiv.appendChild(li)
         liDiv.appendChild(joinLi)
@@ -89,14 +89,19 @@ function mapRoomList(userId, rooms, className, hasButton){
     li.className = "room-li"
     const roomName = className == 'my-room-list' ? room['roomName'] : room['room']['roomName']
     li.appendChild(document.createTextNode(roomName)) 
-    li.appendChild(document.createElement('br')) 
-    li.appendChild(document.createTextNode(room['roomId']))
+    const roomIdSpan = document.createElement('span')
+    roomIdSpan.textContent = "Room ID: " + room['roomId']
+    li.appendChild(roomIdSpan)
+    // li.appendChild(document.createElement('span')) 
+    // li.appendChild(document.createTextNode(room['roomId']))
+
+    console.log(li)
 
     const deleteLi = document.createElement('div')
     if (hasButton) {
       deleteLi.className = `delete-room-btn_${room['roomId']}`
-      const deleteTextNode = className == "my-room-list" ? "delete" : 'quit'
-      deleteLi.appendChild(document.createTextNode(deleteTextNode))
+      // const deleteTextNode = className == "my-room-list" ? "delete" : 'quit'
+      // deleteLi.appendChild(document.createTextNode(deleteTextNode))
     }
 
     liDiv.appendChild(li)

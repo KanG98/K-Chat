@@ -64,11 +64,11 @@
       <div class="room-list-head">
         <h2>Other Rooms</h2>
         <div class="add-sign" onclick="searchRoom()"></div>
-        <div class="search-room-form" style="display:none;">
+        <div class="search-room-form" style="display:none;" autofocus>
           <form action="javascript:submitSearchRoom()">
             <div style="display: flex;">
               <label for="roomName"></label>
-              <input class="room-name-input" id='search-room-name-input' type="text" name="roomName" placeholder="Room ID" required>
+              <input class="room-name-input" id='search-room-name-input' type="text" name="roomName" placeholder="Room ID" required autofocus>
               <!-- <div class="create-room-btn" onclick="javascript:this.parentNode.parentNode.submit()"></div> -->
               <div class="cancel-search-room-btn" onclick="cancelSearchRoom()"></div>
             </div>
