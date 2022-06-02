@@ -1,8 +1,10 @@
 const getRoom = require('./getRoom')
 function generateRoomId(){
-  //generate 4 digit [0-9A-Z]
+  // generate 4 digit [0-9A-Z]
+  // current: generate 4 digit [0-9]
   var result = '';
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  // const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const characters = '0123456789'
   var charactersLength = characters.length;
   for ( var i = 0; i < 4; i++ ) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
