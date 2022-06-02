@@ -54,6 +54,22 @@ socket.on('message', message => {
 
     //keep newsest messages at the bottom 
     messageContainer.scrollTop = messageContainer.scrollHeight
+
+    // change message box css if the message is sent by the user
+    if(senderInfo.userId === message.senderId){
+      newSenderInfoContainer.style.textAlign = 'right'
+      newSenderInfoContainer.style.width = '50%'
+      newSenderInfoContainer.style.marginLeft = 'auto'
+      newMessageContainer.style.width = '50%'
+      newMessageContainer.style.marginLeft = 'auto'
+      newMessageContainer.style.backgroundColor = '#f3f3f3'
+      newMessageContainer.style.borderTopLeftRadius = '14px'
+      newMessageContainer.style.borderTopRightRadius = '0'
+
+
+
+    }
+
   }
 }); 
 
@@ -67,7 +83,7 @@ chatForm.addEventListener('submit', (e) => {
   fetch(`/user/getById/${senderInfo.userId}`)
     .then(res => res.json())
     .then(res => {
-      const message = formatMessage(res.nickname, chatInput.value)
+      const message = formatMessage(senderInfo.userId, res.nickname, chatInput.value)
       socket.emit('message', message)
       // reset chatinput
       chatInput.value = ""

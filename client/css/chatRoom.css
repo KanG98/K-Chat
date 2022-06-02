@@ -240,26 +240,25 @@ nav {
 
 .message-field {
   margin-left: 30px;
-  margin-right: 80px;
+  /* margin-right: 80px; */
   overflow-y: scroll;
 }
 
 .message-field-sender {
   font-size: 19px;
- 
-
+  text-align: left;
 }
 
 .message-field-message {
   position: relative;
   background-color: white;
-  font-family: Arial;
   font-size: 19px;
   line-height: 20px;
   border-radius: 14px; 
   border-top-left-radius: 0;
   border: 1px solid var(--lightPrimaryColor);
   padding: 10px;
+  width: 80%;
 }
 
 @media screen and (max-width: 1100px) {
