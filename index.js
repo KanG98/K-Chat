@@ -139,14 +139,14 @@ io.on('connection', (socket) => {
     socket.join(roomId)
     console.log('new socket io connection', socket.id)
 
-    socket.broadcast.to(roomId).emit('message', formatMessage('Chat bot: ', `${userId} has joined the chat`))
+    // socket.broadcast.to(roomId).emit('message', formatMessage('Chat bot: ', `${userId} has joined the chat`))
   
     socket.on('message', (message) => {
       io.in(roomId).emit('message', message)
     })
   
     socket.on('disconnect', () => {
-      socket.to(roomId).emit('message', formatMessage('Chat bot: ', `${userId} user has left the chat`))
+      // socket.to(roomId).emit('message', formatMessage('Chat bot: ', `${userId} user has left the chat`))
     })
   })
 })
