@@ -1,7 +1,7 @@
-function formatMessage(senderId, text){
+function formatMessage(senderNickname, text){
   return (
     {
-      senderId: senderId,
+      senderNickname: senderNickname,
       text: text,
       time: new Date()
     }

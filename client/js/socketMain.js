@@ -25,14 +25,16 @@ socket.emit('join-room', senderInfo)
 socket.on('message', message => {
   if(message){
     // parse message
-    const senderId = message.senderId
+    const senderNickname = message.senderNickname
     const text = message.text
-    const timestamp = message.time.substring(11,19)
+    // const timestamp = message.time.substring(11,19)
+    const timestamp = new Date(message.time).toString().substring(4,24)
+
 
     // add message to message form
     const newMessageBox = document.createElement("div")
     const newSenderInfoContainer = document.createElement("p")
-    const newSenderInfo = document.createTextNode(`${senderId} ${timestamp}`)
+    const newSenderInfo = document.createTextNode(`${senderNickname} ${timestamp}`)
     const newMessageContainer = document.createElement("p")
     const newMessage = document.createTextNode(`${text}`)
 
@@ -62,11 +64,14 @@ chatForm.addEventListener('submit', (e) => {
   e.preventDefault() 
 
   // emit to other socket 
-
-  const message = formatMessage(senderInfo.userId, chatInput.value)
-  socket.emit('message', message)
-
-  // reset chatinput
-  chatInput.value = ""
-  chatInput.focus()
+  fetch(`/user/getById/${senderInfo.userId}`)
+    .then(res => res.json())
+    .then(res => {
+      const message = formatMessage(res.nickname, chatInput.value)
+      socket.emit('message', message)
+      // reset chatinput
+      chatInput.value = ""
+      chatInput.focus()
+    })
+    .catch(e => console.log(e))
 })
