@@ -95,8 +95,6 @@ function mapRoomList(userId, rooms, className, hasButton){
     // li.appendChild(document.createElement('span')) 
     // li.appendChild(document.createTextNode(room['roomId']))
 
-    console.log(li)
-
     const deleteLi = document.createElement('div')
     if (hasButton) {
       deleteLi.className = `delete-room-btn_${room['roomId']}`

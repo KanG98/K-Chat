@@ -85,9 +85,25 @@ chatForm.addEventListener('submit', (e) => {
     .then(res => {
       const message = formatMessage(senderInfo.userId, res.nickname, chatInput.value)
       socket.emit('message', message)
+    })
+    .catch(e => console.log(e))
+  
+  // store message info into message db
+
+  fetch('/messages/insert',
+  {
+    method: 'POST',
+    headers: { 'Content-Type' : 'application/json'},
+    body: JSON.stringify(
+      {
+        senderId: senderInfo.userId,
+        roomId: senderInfo.roomId,
+        message: chatInput.value
+      }
+  )})
+    .then(res => {
       // reset chatinput
       chatInput.value = ""
       chatInput.focus()
     })
-    .catch(e => console.log(e))
-})
+      .catch(e => console.log(e))})
