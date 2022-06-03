@@ -323,13 +323,13 @@ nav {
   background-image: url("./../src/envelope.png");
   background-size: 24px;
   background-position: center;
-  /* background-color: #8a8cff; */
+  background-color: #8a8cff;
   height: 24px;
   width: 24px;
   margin-top: 10px;
   margin-left: 10px;
   cursor: pointer;
-  /* border-radius: 3px; */
+  border-radius: 3px;
 }
 
 .contactme-linkedin {

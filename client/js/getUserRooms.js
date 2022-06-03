@@ -1,5 +1,5 @@
 function getHostRoom(userId, hasButton){
-  fetch(`http://localhost:3030/room/byHostId/${userId}`)
+  fetch(`/room/byHostId/${userId}`)
     .then(res => res.json())
     .then(res => {
       mapRoomList(userId, res, "my-room-list", hasButton) 
@@ -10,7 +10,7 @@ function getHostRoom(userId, hasButton){
 }
 
 function getOtherRoom(userId, hasButton){
-  fetch(`http://localhost:3030/joinRoom/get/byUserId/${userId}`)
+  fetch(`/joinRoom/get/byUserId/${userId}`)
     .then(res => res.json())
     .then(res => {
       mapRoomList(userId, res, "other-room-list", hasButton)
@@ -41,8 +41,11 @@ function submitSearchRoom(){
         li.className = "room-li"
         const roomName =  room['roomName']
         li.appendChild(document.createTextNode(roomName)) 
-        li.appendChild(document.createElement('span')) 
-        li.appendChild(document.createTextNode(room['roomId']))
+        const roomIdSpan = document.createElement('span')
+        roomIdSpan.textContent = "Room ID: " + room['roomId']
+        li.appendChild(roomIdSpan)
+        // li.appendChild(document.createElement('span')) 
+        // li.appendChild(document.createTextNode(room['roomId']))
     
         const joinLi = document.createElement('div')
         joinLi.className = `join-room-btn_${room['roomId']}`
@@ -97,7 +100,7 @@ function mapRoomList(userId, rooms, className, hasButton){
 
     li.addEventListener('click', (e) => {
       // chat can only be entered when session.userId exists or not expired
-      document.location.href = `http://localhost:3030/chat/${userId}/${room['roomId']}`
+      document.location.href = `/chat/${userId}/${room['roomId']}`
     })
 
         
