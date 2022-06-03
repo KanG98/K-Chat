@@ -49,7 +49,7 @@ router.get('/me/:userId', jsonParser, async (req, res) => {
   if(userId == req.params.userId){
     res.render('me.html')
   }else{
-    res.redirect('http://localhost:3030/')
+    res.redirect('/')
   }
 })
 
@@ -58,7 +58,7 @@ router.post('/user/login', jsonParser, async (req, res) => {
     (user) => {
       if(user && user.password == req.body.password){
         req.session.userId = user.userId
-        return res.redirect(`http://localhost:3030/me/${user.userId}`)
+        return res.redirect(`/me/${user.userId}`)
       } 
       else{
         res.status(406).send()

@@ -1,5 +1,5 @@
 function getUserInfoById(userId){
-  fetch(`http://localhost:3030/user/getById/${userId}`)
+  fetch(`/user/getById/${userId}`)
     .then(res => res.json())
     .then(res => {
       mapUserInfo(res)

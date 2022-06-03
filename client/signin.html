@@ -35,10 +35,10 @@
         <span>!</span>
       </h1>    </div>
     <div class="signup-form">
-    <form class="login-form" action="http://localhost:3030/user/login" method="post">
+    <form class="login-form" action="/user/login" method="post">
       <section class="form-title">
         <h2>Sign In</h2>
-        <p>Don't have an account? <a href="http://localhost:3030/signup.html">Sign up</a></p>
+        <p>Don't have an account? <a href="/signup.html">Sign up</a></p>
       </section>
       <div>
         <label>Email</label>
@@ -91,7 +91,7 @@
             emailTag.style.fontSize = '12px'
           }
           if(res.status == '200'){
-            window.location.href = "http://localhost:3030"
+            window.location.href = "/"
           }
       }).catch((error) => {
           console.log(2)

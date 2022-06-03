@@ -13,7 +13,7 @@
 </head>
 <body>
   <nav>
-    <div class="icon" onclick="window.location='http://localhost:3030/'">
+    <div class="icon" onclick="window.location='/'">
       <div class="icon-img"></div>
       <p>K-Chat</p>
     </div>   
@@ -31,7 +31,7 @@
       </div>
 
       <div class="log-out">
-        <form action="http://localhost:3030/user/logout" method="post">
+        <form action="/user/logout" method="post">
           <div onclick="javascript:this.parentNode.submit()" class="logout-button">log out</div>
         </form>
       </div>
@@ -45,7 +45,7 @@
         <div>
         <div class="add-sign" onclick="createRoom()"></div>
         <div class="create-room-form" style="display:none;">
-          <form action="http://localhost:3030/room/insert" method="post">
+          <form action="/room/insert" method="post">
             <div style="display: flex;">
               <label for="roomName"></label>
               <input class="room-name-input" id='create-room-name-input' type="text" name="roomName" placeholder="New room's name" required>
