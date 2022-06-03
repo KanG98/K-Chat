@@ -59,7 +59,7 @@ function renderMessage(message){
 function renderChatHistory(){
   const roomId = getFormatSenderName()['roomId']
   const nicknameLookup = {}
-  fetch(`/messages/get/${roomId}`)
+  fetch(`/kchat/messages/get/${roomId}`)
     .then(res => res.json())
     .then(messages => {
       messages.sort((a,b) => {return new Date(a['sentTime']) - new Date(b['sentTime'])})

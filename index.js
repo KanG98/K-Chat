@@ -6,7 +6,7 @@ const morgan = require('morgan');
 const app = express();
 const server = require('http').createServer(app)
 const path = require('path');
-const socketio = require('socket.io')
+const socketio = require('socket.io')(http, { path: '/kchat/socket.io'})
 const db = require('./database/db')
 const uuid = require('uuid')
 
