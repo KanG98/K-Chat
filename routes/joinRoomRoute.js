@@ -4,7 +4,8 @@ var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json()
 const cors = require('cors')
 const uuid = require('uuid');
-const insertJoinRoom = require('../database/DMLs/insertJoinroom');
+const path = require('path')
+const insertJoinRoom = require(path.resolve(__dirname, '../database/DMLs/insertJoinroom'));
 const deleteJoinRoom = require('../database/DMLs/deleteJoinRoom');
 const getJoinRoom = require('../database/DMLs/getJoinRoom');
 
