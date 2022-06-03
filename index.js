@@ -43,12 +43,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'client')))
 
-app.use('/kchat/', signupRoute)
-app.use('/kchat/', joinRoomRoute)
-app.use('/kchat/', messagesRoute)
-app.use('/kchat/', roomRoute)
-app.use('/kchat/', loginRoute)
-app.use('/kchat/', userInfoRoute)
+app.use('/', signupRoute)
+app.use('/', joinRoomRoute)
+app.use('/', messagesRoute)
+app.use('/', roomRoute)
+app.use('/', loginRoute)
+app.use('/', userInfoRoute)
 
 const io = socketio(server)
 // need auth

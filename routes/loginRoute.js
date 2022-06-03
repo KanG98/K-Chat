@@ -34,9 +34,9 @@ const redirectLogin = (req, res, next) => {
     console.log(new Date(req.session.cookie._expires) )
     console.log(new Date())
     console.log(new Date(req.session.cookie._expires) > new Date())
-    res.redirect(`/me/${userId}`)
+    res.redirect(`/kchat/me/${userId}`)
   }else{
-    res.redirect('/user/login')
+    res.redirect('/kchat/user/login')
   }
 } 
 
@@ -49,7 +49,7 @@ router.get('/me/:userId', jsonParser, async (req, res) => {
   if(userId == req.params.userId){
     res.render('me.html')
   }else{
-    res.redirect('/')
+    res.redirect('/kchat/')
   }
 })
 
@@ -58,7 +58,7 @@ router.post('/user/login', jsonParser, async (req, res) => {
     (user) => {
       if(user && user.password == req.body.password){
         req.session.userId = user.userId
-        return res.redirect(`/me/${user.userId}`)
+        return res.redirect(`/kchat/me/${user.userId}`)
       } 
       else{
         res.status(406).send()
@@ -73,12 +73,12 @@ router.get('/user/login', jsonParser, (req, res) => {
 router.post('/user/logout', jsonParser, (req, res) => {
   req.session.destroy(err => {
     if(err) {
-      res.redirect("/")
+      res.redirect("/kchat/")
       return 
     }
   })
   res.clearCookie(SESS_NAME)
-  res.redirect('/user/login')
+  res.redirect('/kchat/user/login')
 })
 
 module.exports = router;

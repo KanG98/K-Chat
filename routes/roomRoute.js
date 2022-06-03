@@ -25,7 +25,7 @@ router.get('/chat/:userId/:roomId', (req, res) =>{
     res.render('chatRoom.html')
   }
   else {
-    res.redirect('/')
+    res.redirect('/kchat/')
   }
 })
 
@@ -53,7 +53,7 @@ router.post('/room/insert', jsonParser, (req, res) => {
               hostUserId: req.session.userId
             }
   insertRoom(newRoom).then(x => {
-    res.redirect('/')
+    res.redirect('/kchat/')
   }).catch(e => {
     res.send(e)
   })
