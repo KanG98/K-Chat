@@ -2,6 +2,19 @@ function dropdownEvent(){
   document.getElementsByClassName('dropdown-content')[0].classList.toggle("show")
 }
 
+function editNickname(){
+  let newNickname = prompt("Enter your new nickname: ")
+  const userId = window.location.href.split('/')[window.location.href.split('/').length-1]
+  fetch('/user/updateInfo',
+       {method: 'POST',
+        headers: { 'Content-Type' : 'application/json'},
+        body: JSON.stringify({
+            userId: userId,
+            nickname: newNickname
+          })})
+          .then(document.location.reload()).catch(e => console.log(e))
+}
+
 function createRoom(){
   document.getElementsByClassName("create-room-form")[0].style.display = 'block';
   document.getElementsByClassName("add-sign")[0].style.display = 'none';

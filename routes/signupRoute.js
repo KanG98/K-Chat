@@ -44,8 +44,9 @@ router.post('/user/signup', jsonParser, async (req, res) => {
 
 router.post('/user/updateInfo',jsonParser, (req, res) => {
   const newInfo = req.body
+  console.log(req.body.userId)
   console.log(newInfo)
-  updateUser(req.body.email, newInfo)
+  updateUser(req.body.userId, {nickname: newInfo.nickname})
   res.send(newInfo) // neeed try catch here 
 })
 
