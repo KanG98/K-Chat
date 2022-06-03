@@ -24,7 +24,7 @@ nav {
 }
 
 .icon-img {
-  background-image: url("./../kchat/src/chat.png");
+  background-image: url("./../src/chat.png");
   background-repeat: no-repeat;
   background-size: 50px;
   height: 64px;
@@ -320,7 +320,7 @@ nav {
 }
 
 .contactme-email, .contactme-linkedin {
-  background-image: url("./../kchat/src/envelope.png");
+  background-image: url("./../src/envelope.png");
   background-size: 24px;
   background-position: center;
   background-color: #8a8cff;
@@ -333,6 +333,6 @@ nav {
 }
 
 .contactme-linkedin {
-  background-image: url("./../kchat/src/linkedin.png");
+  background-image: url("./../src/linkedin.png");
   margin-top: 7px;
 }  */

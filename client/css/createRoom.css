@@ -20,7 +20,7 @@ nav {
 }
 
 .icon-img {
-  background-image: url("./../kchat/src/chat.png");
+  background-image: url("./../src/chat.png");
   background-repeat: no-repeat;
   background-size: 50px;
   height: 64px;
