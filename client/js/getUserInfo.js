@@ -1,5 +1,5 @@
 function getUserInfoById(userId){
-  fetch(`kchat/user/getById/${userId}`)
+  fetch(`/kchat/user/getById/${userId}`)
     .then(res => res.json())
     .then(res => {
       mapUserInfo(res)
