@@ -57,6 +57,7 @@ function submitSearchRoom(){
     
         joinLi.addEventListener('click', (e) => {
           const userId = window.location.href.split('/')[window.location.href.split('/').length-1]
+          console.log('getUserroom', userId)
           const roomId = e.target.className.split('_')[1]
           fetch('/kchat/joinRoom/join',
             { method: 'POST',

@@ -3,6 +3,7 @@ function getFormatSenderName(){
     const pathes = url.pathname.split('/')
     var userId = pathes[2]
     var roomId = pathes[3]
+    console.log('getformatsendername', userId)
     return {userId: userId, roomId: roomId}
 }
 

@@ -10,6 +10,7 @@ function getFormatSenderName(){
   const pathes = url.pathname.split('/')
   var userId = pathes[2]
   var roomId = pathes[3]
+  console.log('socketmain', userId)
   return {userId: userId, roomId: roomId}
 }
 

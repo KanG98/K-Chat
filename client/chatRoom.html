@@ -98,6 +98,7 @@
     <script>
 
     const userId = window.location.href.split('/')[window.location.href.split('/').length-2]
+    console.log('chatroom', userId)
     getHostRoom(userId)
     getOtherRoom(userId)
     getUserInfoById(userId)

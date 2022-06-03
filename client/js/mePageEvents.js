@@ -5,6 +5,7 @@ function dropdownEvent(){
 function editNickname(){
   let newNickname = prompt("Enter your new nickname: ")
   const userId = window.location.href.split('/')[window.location.href.split('/').length-1]
+  console.log('mepageevent',userId)
   fetch('/kchat/user/updateInfo',
        {method: 'POST',
         headers: { 'Content-Type' : 'application/json'},
