@@ -1,5 +1,5 @@
 function getHostRoom(userId, hasButton){
-  fetch(`kchat/room/byHostId/${userId}`)
+  fetch(`/room/byHostId/${userId}`)
     .then(res => res.json())
     .then(res => {
       mapRoomList(userId, res, "my-room-list", hasButton) 
@@ -10,7 +10,7 @@ function getHostRoom(userId, hasButton){
 }
 
 function getOtherRoom(userId, hasButton){
-  fetch(`kchat/joinRoom/get/byUserId/${userId}`)
+  fetch(`/joinRoom/get/byUserId/${userId}`)
     .then(res => res.json())
     .then(res => {
       mapRoomList(userId, res, "other-room-list", hasButton)
