@@ -40,7 +40,7 @@ const redirectLogin = (req, res, next) => {
   }
 } 
 
-router.get('/kchat/', jsonParser, redirectLogin, (req, res) => {
+router.get('/', jsonParser, redirectLogin, (req, res) => {
 })
 
 router.get('/me/:userId', jsonParser, async (req, res) => {
