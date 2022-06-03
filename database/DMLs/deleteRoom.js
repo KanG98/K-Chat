@@ -7,6 +7,10 @@ function deleteRoom(room){
     .catch((err) => {
       console.log(err)
     });
+  const Messages = require('../messages')
+  Messages.destroy({where: {roomId: room.roomId}})
+    .then((message) => {message, "deleted successful"})
+    .catch(err => {console.log(err)})
 }
 
 module.exports = deleteRoom

@@ -52,9 +52,11 @@ router.post('/room/insert', jsonParser, (req, res) => {
               roomName: req.body.roomName,
               hostUserId: req.session.userId
             }
-  insertRoom(newRoom)
-  res.redirect('/')
-  
+  insertRoom(newRoom).then(x => {
+    res.redirect('/')
+  }).catch(e => {
+    res.send(e)
+  })
 })
 
 // route for delete 
