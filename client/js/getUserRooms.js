@@ -1,5 +1,5 @@
 function getHostRoom(userId, hasButton){
-  fetch(`/room/byHostId/${userId}`)
+  fetch(`/kchat/room/byHostId/${userId}`)
     .then(res => res.json())
     .then(res => {
       mapRoomList(userId, res, "my-room-list", hasButton) 
@@ -10,7 +10,7 @@ function getHostRoom(userId, hasButton){
 }
 
 function getOtherRoom(userId, hasButton){
-  fetch(`/joinRoom/get/byUserId/${userId}`)
+  fetch(`/kchat/joinRoom/get/byUserId/${userId}`)
     .then(res => res.json())
     .then(res => {
       mapRoomList(userId, res, "other-room-list", hasButton)
@@ -25,7 +25,7 @@ function submitSearchRoom(){
   document.getElementsByClassName("other-room-list")[0].style.display = 'none';
 
   const roomId = document.getElementById("search-room-name-input").value
-  fetch(`kchat/room/byRoomId/${roomId}`)
+  fetch(`/kchat/room/byRoomId/${roomId}`)
     .then(res => res.json())
     .then(res => {
       const mySearchRoomListElm = document.getElementsByClassName('search-room-list')[0]
@@ -58,7 +58,7 @@ function submitSearchRoom(){
         joinLi.addEventListener('click', (e) => {
           const userId = window.location.href.split('/')[window.location.href.split('/').length-1]
           const roomId = e.target.className.split('_')[1]
-          fetch('/joinRoom/join',
+          fetch('/kchat/joinRoom/join',
             { method: 'POST',
               headers: { 'Content-Type' : 'application/json'},
               body: JSON.stringify(

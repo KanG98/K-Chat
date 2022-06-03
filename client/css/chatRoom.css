@@ -220,7 +220,7 @@ nav {
 }
 
 .chat-send-btn {
-  background: url('./../kchat/src/send.png') no-repeat;
+  background: url('./../src/send.png') no-repeat;
   background-position: center;
   background-color: rgb(255, 255, 255);
   border-radius: 14px;
