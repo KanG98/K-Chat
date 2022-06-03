@@ -17,78 +17,14 @@ const roomRoute = require('./routes/roomRoute')
 const loginRoute = require('./routes/loginRoute')
 const userInfoRoute = require('./routes/userInfoRoute')
 
+require('dotenv').config()
+
 const {
-  SESS_LIFETIME = 1000 * 60 * 60, // 60 min session 
+  SESS_LIFETIME = 1000 * 60 * 60 * 48, // 2 days session 
   SESS_NAME = 'sid',
   SESS_SECRET = 'my secret'
 } = process.env
 
-
-
-function testMessages(){
-  const Messages = require("./database/messages")
-  Messages.create({
-    messageId: 'testMessagesId',
-    senderId: 'testSEnderId',
-    roomId: 'testRoomId',
-    message: 'hello this is sample'
-  })
-    .then((message) => {
-      console.log('success')
-    })
-    .catch((err) => {
-      console.log(err)
-    });
-}
-
-function testRoom(){
-  const Rooms = require("./database/rooms")
-  Rooms.create({
-    roomId: 'sample id',
-    roomName: 'sampleRoom name',
-    hostUserId: 'sample host user id'
-  })
-    .then((room) => {
-      console.log('success')
-    })
-    .catch((err) => {
-      console.log(err)
-    });
-}
-
-function testJoinRoom(){
-  const JoinRoom = require("./database/joinRoom")
-  JoinRoom.create({
-    userId: 'sample id',
-    roomId: 'sampleRoom i'
-  })
-    .then((room) => {
-      console.log('success')
-    })
-    .catch((err) => {
-      console.log(err)
-    });
-}
-
-function testUserLogin(){
-  const UserLogin = require("./database/userLogin")
-  UserLogin.create({
-    userId: 'sampleId2',
-    deviceId: 'sampleDevice id'
-  })
-    .then((room) => {
-      console.log('success')
-    })
-    .catch((err) => {
-      console.log(err)
-    });
-}
-
-
-// testUserLogin()
-// testRoom()
-// testUsers()
-// testJoinRoom()
 app.use(session({
   name: SESS_NAME,
   resave: false,
@@ -151,6 +87,7 @@ io.on('connection', (socket) => {
   })
 })
 
+console.log(process.env.PORT)
 const port = process.env.PORT || 3030;
 
 db.sync().then(() => {
