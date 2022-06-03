@@ -234,3 +234,32 @@ h1 span:nth-child(17) {
           0 50px 25px var(--lightPrimaryColor);
   }
 }
+
+.contactme-section {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 0.9rem;
+  display: flex;
+}
+
+.contactme-email, .contactme-linkedin {
+  background-image: url("./../src/envelope.png");
+  background-size: 24px;
+  background-position: center;
+  /* background-color: #8a8cff; */
+  height: 24px;
+  width: 24px;
+  top: 7px;
+  margin-left: 10px;
+  cursor: pointer;
+  /* border-radius: 3px; */
+}
+
+.contactme-linkedin {
+  background-image: url("./../src/linkedin.png");
+  top: 4px;
+}
+
+/* .contactme-email:hover, .contactme-linkedin:hover { */
+  /* background-color: var(--lightPrimaryColor); */
+/* } */
