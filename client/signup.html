@@ -5,11 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>K-Chat | Sign up</title>
-  <link rel="icon" href="/src/chat.png">
+  <link rel="icon" href="/kchat/src/chat.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/signup.css" />
+  <link rel="stylesheet" href="/kchat/css/signup.css" />
 </head>
 
 <body>
@@ -36,7 +36,7 @@
       </h1>
     </div>
     <div class="signup-form">
-      <form action="/user/signup" method="post">
+      <form action="/kchat/user/signup" method="post">
         <section class="form-title">
           <h2>Sign Up</h2>
           <p>Already have an account? <a href="/">Log In</a></p>
@@ -94,7 +94,7 @@
           }
           if(res.status == '200'){
             console.log('signed up')
-            window.location.href = "/"
+            window.location.href = "/kchat/"
           }
       }).catch((error) => {
           console.log(2)

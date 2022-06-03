@@ -21,7 +21,7 @@ nav {
 }
 
 .icon-img {
-  background-image: url("./../src/chat.png");
+  background-image: url("./../kchat/src/chat.png");
   background-repeat: no-repeat;
   background-size: 50px;
   height: 64px;
@@ -120,7 +120,7 @@ nav {
 
 .add-sign {
   position: absolute;
-  background-image: url("../src/plus.png");
+  background-image: url("../kchat/src/plus.png");
   background-size: 16px;
   background-repeat: no-repeat;
   background-position: center;
@@ -169,11 +169,11 @@ nav {
 }
 
 /* .create-room-btn {
-  background-image: url("./../src/checked.png");
+  background-image: url("./../kchat/src/checked.png");
 } */
 
 .cancel-create-room-btn, .cancel-search-room-btn {
-  background-image: url("./../src/close.png");
+  background-image: url("./../kchat/src/close.png");
 }
 /* .create-room-btn, .cancel-create-room-btn { */
 .cancel-create-room-btn, .cancel-search-room-btn{
@@ -247,7 +247,7 @@ nav {
 
 
 div[class*='-room-btn_'] {
-  background-image: url('../src/delete.png');
+  background-image: url('../kchat/src/delete.png');
   background-color: var(--xlightPrimaryColor);
   background-repeat: no-repeat;
   background-position: center;
@@ -264,7 +264,7 @@ div[class*='-room-btn_']:hover {
 }
 
 div[class*='join-room-btn_'] {
-  background-image: url('../src/group.png');
+  background-image: url('../kchat/src/group.png');
   background-size: 40px;
   background-position: center;
 }
@@ -335,7 +335,7 @@ footer {
 }
 
 .contactme-email, .contactme-linkedin {
-  background-image: url("./../src/envelope.png");
+  background-image: url("./../kchat/src/envelope.png");
   background-size: 24px;
   background-position: center;
   /* background-color: #8a8cff; */
@@ -348,6 +348,6 @@ footer {
 }
 
 .contactme-linkedin {
-  background-image: url("./../src/linkedin.png");
+  background-image: url("./../kchat/src/linkedin.png");
   margin-top: 7px;
 } 

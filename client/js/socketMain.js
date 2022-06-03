@@ -100,7 +100,7 @@ chatForm.addEventListener('submit', (e) => {
   e.preventDefault() 
 
   // emit to other socket 
-  fetch(`/user/getById/${senderInfo.userId}`)
+  fetch(`/kchat/user/getById/${senderInfo.userId}`)
     .then(res => res.json())
     .then(res => {
       // call socket
@@ -109,7 +109,7 @@ chatForm.addEventListener('submit', (e) => {
     })
     .then(res => {
       // store message to database
-      return   fetch('/messages/insert',
+      return   fetch('/kchat/messages/insert',
        {method: 'POST',
         headers: { 'Content-Type' : 'application/json'},
         body: JSON.stringify({

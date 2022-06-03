@@ -1,5 +1,5 @@
 function getHostRoom(userId, hasButton){
-  fetch(`/room/byHostId/${userId}`)
+  fetch(`kchat/room/byHostId/${userId}`)
     .then(res => res.json())
     .then(res => {
       mapRoomList(userId, res, "my-room-list", hasButton) 
@@ -10,7 +10,7 @@ function getHostRoom(userId, hasButton){
 }
 
 function getOtherRoom(userId, hasButton){
-  fetch(`/joinRoom/get/byUserId/${userId}`)
+  fetch(`kchat/joinRoom/get/byUserId/${userId}`)
     .then(res => res.json())
     .then(res => {
       mapRoomList(userId, res, "other-room-list", hasButton)
@@ -25,7 +25,7 @@ function submitSearchRoom(){
   document.getElementsByClassName("other-room-list")[0].style.display = 'none';
 
   const roomId = document.getElementById("search-room-name-input").value
-  fetch(`/room/byRoomId/${roomId}`)
+  fetch(`kchat/room/byRoomId/${roomId}`)
     .then(res => res.json())
     .then(res => {
       const mySearchRoomListElm = document.getElementsByClassName('search-room-list')[0]
@@ -100,7 +100,7 @@ function mapRoomList(userId, rooms, className, hasButton){
 
     li.addEventListener('click', (e) => {
       // chat can only be entered when session.userId exists or not expired
-      document.location.href = `/chat/${userId}/${room['roomId']}`
+      document.location.href = `/kchat/chat/${userId}/${room['roomId']}`
     })
 
         

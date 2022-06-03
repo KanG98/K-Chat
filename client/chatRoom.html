@@ -7,16 +7,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/chatRoom.css" />
-  <link rel="stylesheet" href="/css/mePage.css" />
+  <link rel="stylesheet" href="/kchat/css/chatRoom.css" />
+  <link rel="stylesheet" href="/kchat/css/mePage.css" />
   <title>K-Chat</title>
-  <link rel="icon" href="/src/chat.png">
+  <link rel="icon" href="/kchat/src/chat.png">
 
 </head>
 <body>
   
   <nav>
-    <div class="icon" onclick="window.location='/'">
+    <div class="icon" onclick="window.location='/kchat/'">
       <div class="icon-img"></div>
       <p>K-Chat</p>
     </div>   
@@ -33,7 +33,7 @@
       </div>
 
       <div class="log-out">
-        <form action="/user/logout" method="post">
+        <form action="/kchat/user/logout" method="post">
           <div onclick="javascript:this.parentNode.submit()" class="logout-button">log out</div>
         </form>
       </div>
@@ -87,14 +87,14 @@
   </footer> -->
 
     <!-- having scripts at the end of the body so that it runs after the above renders -->
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/socketMain.js"></script> 
-    <script src="/js/formatSenderName.js"></script>
-    <script src="/js/formatMessage.js"></script>
-    <script src="/js/getTime.js"></script>
+    <script src="/kchat/socket.io/socket.io.js"></script>
+    <script src="/kchat/js/socketMain.js"></script> 
+    <script src="/kchat/js/formatSenderName.js"></script>
+    <script src="/kchat/js/formatMessage.js"></script>
+    <script src="/kchat/js/getTime.js"></script>
 
-    <script src="/js/getUserRooms.js"></script>
-    <script src="/js/getUserInfo.js"></script>
+    <script src="/kchat/js/getUserRooms.js"></script>
+    <script src="/kchat/js/getUserInfo.js"></script>
     <script>
 
     const userId = window.location.href.split('/')[window.location.href.split('/').length-2]
@@ -112,7 +112,7 @@
 
     const backToLobbyBtn = document.getElementsByClassName('back-to-lobby-btn')[0]
     backToLobbyBtn.addEventListener('click', (e) => {
-      window.location.href = `/me/${userId}`
+      window.location.href = `/kchat/me/${userId}`
     })
     </script>
 

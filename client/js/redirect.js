@@ -9,5 +9,5 @@ loginForm.addEventListener('submit', (e) => {
 })
 
 function redirectToChatRoom (userId, roomId) {
-    location.href = `${userId}/${roomId}`
+    location.href = `kchat/${userId}/${roomId}`
 }
